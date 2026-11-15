@@ -13,7 +13,7 @@
   .kick { margin: 0; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
   h1 { margin: 4px 0 0; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 44px; font-weight: 500; letter-spacing: -.015em; }
   .sub { margin: 6px 0 0; color: var(--soft); font-size: 16px; }
-  .speed { pointer-events: auto; display: inline-flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 15px; font-weight: 600; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 9px 18px; box-shadow: 0 14px 40px -22px rgba(40,30,10,.3); }
+  .speed { display: none; pointer-events: auto; display: inline-flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 15px; font-weight: 600; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 9px 18px; box-shadow: 0 14px 40px -22px rgba(40,30,10,.3); }
   .speed input { width: 170px; accent-color: var(--amber); }
   #speedn { min-width: 4.2em; color: var(--amber); }
   .score { position: absolute; left: 34px; bottom: 28px; display: flex; gap: 12px; pointer-events: none; }
@@ -62,10 +62,7 @@
   <p class="kick">Live · hand vs fly</p>
   <h1>Slap the fly</h1>
   <p class="sub"><span class="for-desk">Move over the fly. Click to bring the hand down.</span><span class="for-phone">Move over the fly. Tap to bring the hand down.</span></p>
-  <label class="speed">Hand speed
-    <input id="speed" type="range" min="0" max="100" value="30">
-    <span id="speedn">slow</span>
-  </label>
+  <input id="speed" type="range" min="0" max="100" value="30" hidden>
 </div>
 <div class="score"><div><small>Hand</small><b id="sh">0</b></div><div class="f"><small>Fly</small><b id="sf">0</b></div></div>
 <div id="banner"></div>
@@ -289,9 +286,7 @@ function step(dth) {
 }
 
 document.getElementById("note").textContent =
-  "Eight real LC4 cells connect to the giant fiber (58 to 67 synapses each). That cell connects to TTMn with 70 synapses. All three are acetylcholine, so the synapses add. One scale, " +
-  C.wSyn + ", was fit in " + C.trainMs + " ms. A normal slap makes TTMn fire while the hand is still above the table, and the fly is already gone. A very short slap from close lands first. The leg takes " +
-  C.jumpAfterMs + " ms after TTMn fires.";
+  "Ten real cells from the public MaleCNS map. Eight LC4 cells connect to the giant fiber, 58 to 67 synapses each. The giant fiber connects to TTMn with 70. A box lights up when that cell passes the signal on.";
 
 const result = document.getElementById("result");
 function say(text) { result.textContent = text; }
@@ -366,13 +361,13 @@ function startJump() {
   }
   jumpTo.set(tx, 0, tz);
   escapes += 1;
-  say("The leg pushed off " + (ttmnAt + C.jumpAfterMs) + " ms into the slap. The hand needed " + slapMs + " ms.");
+  say("The signal reached the leg, and the fly jumped.");
   flash("The fly wins", "fly");
 }
 function landedHit() {
   mode = "hit";
   hits += 1;
-  say("The hand landed in " + slapMs + " ms, before the leg could push off.");
+  say("The hand landed first.");
   flash("Hit", "hand");
   setTimeout(() => { if (mode === "hit") mode = "hover"; }, 450);
 }
@@ -538,7 +533,7 @@ document.getElementById("fold").onclick = () => {
   requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
 };
 resize();
-say("Watch the three boxes when the hand comes down.");
+say("The three boxes light up when a cell passes the signal on.");
 
 function frame(now) {
   if (mode === "hover") {
