@@ -324,3 +324,5 @@ html.view #viewbar { display: flex; position: fixed; left: 0; right: 0; bottom: 
 .splitnums b { font: 500 72px/1 var(--serif); color: var(--c); min-width: 150px; font-variant-numeric: tabular-nums; }
 .splitnums span { font-size: 28px; color: var(--soft); }
 .slide[data-n="14"] .title { max-width: 700px; }
+
+.slide[data-n="14"] .col-r { top: 168px; bottom: auto; padding: 26px 30px 30px; border-radius: 28px; background: rgba(246,244,238,.94); box-shadow: 0 24px 60px -30px rgba(40,30,10,.35); }
