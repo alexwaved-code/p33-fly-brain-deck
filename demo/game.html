@@ -300,8 +300,8 @@ function flash(text, who) {
 
 function slapPace() {
   const u = Number(document.getElementById("speed").value) / 100;
-  const label = u < 0.34 ? "slow" : u > 0.7 ? "fast" : "medium";
-  document.getElementById("speedn").textContent = label;
+  const lab = document.getElementById("speedn");
+  if (lab) lab.textContent = u < 0.34 ? "slow" : u > 0.7 ? "fast" : "medium";
   return { h0: 4.2 - u * 2.5, ms: Math.round(800 - u * 755) };
 }
 document.getElementById("speed").oninput = slapPace;

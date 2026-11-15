@@ -334,10 +334,11 @@ const circ = $("#circuit");
 if (circ) {
   const svg = $("#cwires"), detail = $("#cdetail");
   const col = { LC4: "var(--blue)", DNp01: "var(--amber)", TTMn: "var(--green)" };
+  const label = { DNp01: "Giant fiber" };
   const btns = CIRC.map((c, i) => {
     const b = document.createElement("button");
     b.type = "button"; b.style.setProperty("--c", col[c.name]);
-    b.innerHTML = `${c.name}${c.syn ? `<small>${c.syn}</small>` : ""}`;
+    b.innerHTML = `${label[c.name] || c.name}${c.syn ? `<small>${c.syn}</small>` : ""}`;
     b.addEventListener("click", (e) => { e.stopPropagation(); pick(i); });
     circ.appendChild(b); return b;
   });
@@ -364,7 +365,7 @@ if (circ) {
     const c = CIRC[i];
     const edge = c.syn == null ? "No edge onward. Its own transmitter is glutamate. The edge into it is acetylcholine."
       : `${c.syn} synapses on to ${c.nxt}. Every edge is +1, acetylcholine.`;
-    detail.innerHTML = `<p class="k">MaleCNS v1.0 · cell ${i}</p><h3>${c.name}</h3><p class="num">#${c.id.toLocaleString("en-US")}</p><p>${edge}</p><p>Right-side LC4 in the public list: 55 cells, 2,580 contacts. This game uses these 8. Counts are scaled by 0.004.</p>`;
+    detail.innerHTML = `<p class="k">MaleCNS v1.0 · cell ${i}</p><h3>${label[c.name] || c.name}</h3><p class="num">#${c.id.toLocaleString("en-US")}${c.name === "DNp01" ? " · DNp01" : ""}</p><p>${edge}</p><p>Right-side LC4 in the public list: 55 cells, 2,580 contacts. This game uses these 8. Counts are scaled by 0.004.</p>`;
   }
   place(); pick(0); addEventListener("resize", place);
 }
