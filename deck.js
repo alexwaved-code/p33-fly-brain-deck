@@ -345,15 +345,17 @@ if (circ) {
   const lines = [];
   function place() {
     const w = circ.clientWidth, h = circ.clientHeight;
-    const x = [150, w * 0.58, w - 110], yOf = (i) => i < 8 ? (i + 0.5) / 8 * h : h / 2;
+    const x = [150, w * 0.56, w - 120], top = h - 72, yOf = (i) => i < 8 ? (i + 0.5) / 8 * top : top / 2;
     const at = (i) => ({ x: x[i < 8 ? 0 : i === 8 ? 1 : 2], y: yOf(i) });
     btns.forEach((b, i) => { const p = at(i); b.style.left = p.x + "px"; b.style.top = p.y + "px"; });
     lines.forEach((l) => l.remove()); lines.length = 0;
     CIRC.forEach((c, i) => {
       if (c.syn == null) return;
-      const a = at(i), b = at(i < 8 ? 8 : 9);
+      const a = at(i), b = at(i < 8 ? 8 : 9), gap = 8;
       const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      l.setAttribute("x1", a.x + 54); l.setAttribute("y1", a.y); l.setAttribute("x2", b.x - 54); l.setAttribute("y2", b.y);
+      l.setAttribute("x1", a.x + btns[i].offsetWidth / 2 + gap); l.setAttribute("y1", a.y);
+      l.setAttribute("x2", b.x - btns[i < 8 ? 8 : 9].offsetWidth / 2 - gap); l.setAttribute("y2", b.y);
+      l.style.stroke = col[c.name]; l.style.opacity = "0.35";
       svg.appendChild(l); lines.push(l);
     });
     if (picked >= 0) mark(picked);
@@ -363,9 +365,12 @@ if (circ) {
   function pick(i) {
     picked = i; btns.forEach((b, k) => b.classList.toggle("on", k === i)); mark(i);
     const c = CIRC[i];
+    const who = label[c.name] || c.name;
+    const box = c.name === "LC4" ? "blue" : c.name === "DNp01" ? "gold" : "green";
     const edge = c.syn == null ? "No edge onward. Its own transmitter is glutamate. The edge into it is acetylcholine."
-      : `${c.syn} synapses on to ${c.nxt}. Every edge is +1, acetylcholine.`;
-    detail.innerHTML = `<p class="k">MaleCNS v1.0 · cell ${i}</p><h3>${label[c.name] || c.name}</h3><p class="num">#${c.id.toLocaleString("en-US")}${c.name === "DNp01" ? " · DNp01" : ""}</p><p>${edge}</p><p>Right-side LC4 in the public list: 55 cells, 2,580 contacts. This game uses these 8. Counts are scaled by 0.004.</p>`;
+      : `${c.syn} synapses on to ${c.nxt === "DNp01" ? "the giant fiber" : c.nxt}. Every edge is +1, acetylcholine.`;
+    document.querySelectorAll(".cboxes span").forEach((s) => s.classList.toggle("on", s.dataset.box === c.name));
+    detail.innerHTML = `<p class="k">The ${box} box in the game</p><h3>${who}</h3><p class="num">#${c.id.toLocaleString("en-US")}${c.name === "DNp01" ? " · DNp01" : ""}</p><p>${edge}</p><p>This box lights up on the right of the game when the cell passes the signal on. Right-side LC4 in the public list: 55 cells, 2,580 contacts. We used these 8.</p>`;
   }
   place(); pick(0); addEventListener("resize", place);
 }

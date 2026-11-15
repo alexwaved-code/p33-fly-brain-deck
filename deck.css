@@ -353,3 +353,11 @@ html.view #viewbar { display: flex; position: fixed; left: 0; right: 0; bottom: 
 .cdetail h3 { font: 500 46px/1.05 var(--serif); margin: 8px 0 4px; }
 .cdetail .num { font: 700 28px var(--sans); }
 .cdetail p { font-size: 22px; line-height: 1.4; color: var(--soft); margin-top: 14px; }
+
+.ginfo { background: var(--bg); }
+.cboxes { position: absolute; left: 18px; right: 18px; bottom: 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.cboxes span { --c: var(--blue); text-align: center; font: 700 16px var(--sans); padding: 9px 0; border-radius: 12px; border: 2px solid var(--line); color: var(--faint); background: #fff; }
+.cboxes span[data-box="DNp01"] { --c: var(--amber); } .cboxes span[data-box="TTMn"] { --c: var(--green); }
+.cboxes span.on { background: var(--c); border-color: var(--c); color: #fff; }
+.circuit button { box-shadow: 0 8px 20px -12px rgba(40,30,10,.45); }
+.circuit line.hot { opacity: 1 !important; }
