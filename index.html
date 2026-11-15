@@ -166,22 +166,22 @@ window.frameBox = function () {
 <section class="slide" data-n="9" data-steps="5">
   <h2 class="title rise">Five parts, in the order a signal travels</h2>
   <ol class="parts">
-    <li data-s="1" style="--c:var(--blue)"><b>1</b><div><h3>Compound eye</h3><p>light and images come in</p></div></li>
+    <li data-s="1" style="--c:var(--blue)"><b>1</b><div><h3>Compound eye</h3><p>receives light and images</p></div></li>
     <li data-s="2" style="--c:var(--amber)"><b>2</b><div><h3>Central brain</h3><p>decision and memory</p></div></li>
-    <li data-s="3" style="--c:var(--ink)"><b>3</b><div><h3>Neck</h3><p>the path down from the brain</p></div></li>
-    <li data-s="4" style="--c:var(--violet)"><b>4</b><div><h3>Ventral nerve cord</h3><p>the insect's spinal cord</p></div></li>
-    <li data-s="5" style="--c:var(--green)"><b>5</b><div><h3>Motor neurons</h3><p>signal becomes movement</p></div></li>
+    <li data-s="3" style="--c:var(--ink)"><b>3</b><div><h3>Neck</h3><p>joins the brain to the nerve cord</p></div></li>
+    <li data-s="4" style="--c:var(--violet)"><b>4</b><div><h3>Ventral nerve cord</h3><p>like a spinal cord: legs and wings</p></div></li>
+    <li data-s="5" style="--c:var(--green)"><b>5</b><div><h3>Motor neurons</h3><p>nerve impulse becomes movement</p></div></li>
   </ol>
   <footer class="src"><button class="cite">Berg et al., 2026</button><span>Shapes: MaleCNS v1.0</span></footer>
 </section>
 
 <!-- 10 -->
 <section class="slide" data-n="10" data-steps="2">
-  <h2 class="title rise">The neck was not cut</h2>
+  <h2 class="title rise">The neck joins the brain to the body</h2>
   <div class="col-r w620 vmid">
-    <p class="say" data-only="0"><span class="pink-t">Cut here:</span><br>the brain decides.<br>The legs never hear.</p>
+    <p class="say" data-only="0"><span class="pink-t">Stop the map here:</span><br>which muscle does<br>the signal reach?<br>Nobody knows.</p>
     <div data-s="1">
-      <div class="chip-xl amber"><b>One real neuron</b><span>brain → neck → nerve cord</span></div>
+      <div class="chip-xl amber"><b>One real neuron</b><span>brain → neck → nerve cord · the neck is still on the map</span></div>
       <div data-s="2" class="mt40"><p class="path"><i style="color:var(--blue)">EYE</i> → <i style="color:var(--amber)">BRAIN</i> → <i>NECK</i> → <i style="color:var(--violet)">CORD</i> → <i style="color:var(--green)">LEG</i></p><p class="line mt10">A signal can be followed all the way.</p></div>
     </div>
   </div>
@@ -209,9 +209,11 @@ window.frameBox = function () {
   <div data-only="0" class="vs">
     <p class="livepill">Live</p>
     <h2><span>Hand</span> <i>vs</i> <span class="amber-t">fly</span></h2>
-    <p class="vote">Who wins? Vote now.</p>
-    <div class="row gap30 jc mt30"><button class="votebtn" data-vote="hand">Hand <b>0</b></button><button class="votebtn fly" data-vote="fly">Fly <b>0</b></button></div>
-    <button id="voteclear">Clear votes</button>
+    <p class="vote">A race. The fly's cells must fire before the hand lands.</p>
+    <div class="race">
+      <div><b>Hand</b><p>lands in <em>800 ms</em> on slow<br>and <em>45 ms</em> on fast</p></div>
+      <div class="fly"><b>Fly</b><p><em>10</em> cells in a row, then the leg<br>pushes off <em>28 ms</em> later</p></div>
+    </div>
   </div>
   <div data-only="1" class="gamewrap"><iframe id="game" title="Slap the fly" data-src="demo/game.html"></iframe></div>
 </section>

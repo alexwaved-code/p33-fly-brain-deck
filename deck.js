@@ -186,15 +186,6 @@ function dotFrame(now) {
 }
 
 // --- slide 12: vote, then the game ---
-const votes = { hand: 0, fly: 0 };
-function vote(which) {
-  if (!(which in votes)) return;
-  votes[which]++; const b = $(`.votebtn[data-vote="${which}"]`), c = $("b", b);
-  c.textContent = votes[which]; c.style.color = "inherit"; b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump"); send();
-}
-function clearVotes() { for (const k in votes) { votes[k] = 0; const c = $(`.votebtn[data-vote="${k}"] b`); c.textContent = 0; c.style.color = ""; } send(); }
-$$(".votebtn").forEach((b) => b.addEventListener("click", () => vote(b.dataset.vote)));
-$("#voteclear").addEventListener("click", clearVotes);
 const game = $("#game");
 function loadGame() {
   if (game.src) return;
