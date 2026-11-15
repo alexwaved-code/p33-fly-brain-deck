@@ -208,9 +208,9 @@ const VIEWS = {
     if (s >= 5) { tags.push({ id: "p5", t: "5", c: C.green, at: "ttmn", dy: 60 }); sh.cord = lit(C.violet, 0.45); }
     return { vis: 1, cam: LEFT, shells: sh, neu: { ttmn: s >= 5 ? on() : N0() }, tags };
   },
-  10: (s) => s < 3 ? ({ vis: 1, cut: s === 1 ? 1 : 0, cam: { a: 0.3, yaw: 0.1, r: 1050, ox: -330, oy: 40, at: "neck" },
-      shells: { neck: lit(s === 1 ? C.pink : C.ink, 0.5), eye: { op: 0.35 }, brain: { op: 0.5 }, cord: { op: 0.5 } },
-      neu: { gf: s >= 2 ? on() : N0() },
+  10: (s) => s < 2 ? ({ vis: 1, cut: s === 0 ? 1 : 0, cam: { a: 0.3, yaw: 0.1, r: 1050, ox: -330, oy: 40, at: "neck" },
+      shells: { neck: lit(s === 0 ? C.pink : C.ink, 0.5), eye: { op: 0.35 }, brain: { op: 0.5 }, cord: { op: 0.5 } },
+      neu: { gf: s >= 1 ? on() : N0() },
       tags: [{ id: "tb", t: "BRAIN", txt: 1, at: "brain", dy: -250 }, { id: "tn", t: "NECK", txt: 1, at: "neck", dy: -90 }, { id: "tc", t: "NERVE CORD", txt: 1, at: "neck", dx: 250, dy: -190 }] })
     : ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.45 }, brain: { op: 0.45 }, neck: lit(C.ink, 0.5), cord: { op: 0.45 } }, neu: { lc4: on(), gf: on(), ttmn: on() } }),
   13: (s) => ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.4 }, brain: { op: 0.4 }, neck: { op: 0.4 }, cord: { op: 0.4 } },
