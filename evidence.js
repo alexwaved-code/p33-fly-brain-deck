@@ -56,7 +56,7 @@
     13: [{ claim: "LC4 to giant fiber: 67, 65, 63, 63, 62, 61, 59, 58 synapses. Giant fiber to TTMn: 70. Acetylcholine.", where: "MaleCNS v1.0 traced weights, read from the public data set", refs: ["janelia", "berg2026"] }],
     14: [{ claim: "The difference sits in higher brain centres", quote: Q4, where: ABS, refs: ["berg2026"] },
          { claim: "Hotspots can send the same sense into opposing behaviours", quote: Q5, where: ABS, refs: ["berg2026"] },
-         { claim: "Driving pIP10 produces the male courtship pulse song", refs: ["vonp2011"] }],
+         { claim: "Driving pIP10 makes the male vibrate one wing in short pulses, his courtship song", refs: ["vonp2011"] }],
     17: [{ claim: "Seven electron microscopes, 13 months, 8 nm voxels, about 0.082 mm³, about 160 teravoxels", where: "Methods", refs: ["berg2026"] }],
     18: [{ claim: "Flood-filling networks grow a neuron outward from a seed", refs: ["januszewski2018"] },
          { claim: "About 46 million sending sites and 312 million receiving sites; precision about 0.82, recall about 0.81", where: "Methods", refs: ["berg2026"] }],
