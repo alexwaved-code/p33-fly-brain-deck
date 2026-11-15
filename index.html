@@ -205,11 +205,17 @@ window.frameBox = function () {
 </section>
 
 <!-- 12 -->
-<section class="slide center" data-n="12" data-steps="1">
-  <div data-only="0" class="vs">
-    <p class="livepill">Live</p>
-    <h2 class="plain">Watch it run</h2>
-    <p class="vote">Ten cells, copied from the map.<br>One click, and the signal runs.</p>
+<section class="slide" data-n="12" data-steps="1">
+  <div data-only="0" class="ginfo">
+    <h2 class="title">How the game decides</h2>
+    <p class="sub">Ten cells, updated every millisecond. The other 166,681 neurons stay out.</p>
+    <div class="gnums">
+      <div style="--c:var(--ink)"><b>10</b><span>cells copied from the map</span></div>
+      <div style="--c:var(--blue)"><b>800<small>ms</small></b><span>the hand, on slow</span></div>
+      <div style="--c:var(--amber)"><b>45<small>ms</small></b><span>the hand, on fast</span></div>
+      <div style="--c:var(--green)"><b>28<small>ms</small></b><span>then the leg pushes off</span></div>
+    </div>
+    <p class="gnote">We set one number, so a slow slap loses and a very fast, close slap can hit. The synapse counts are the real ones.</p>
   </div>
   <div data-only="1" class="gamewrap"><iframe id="game" title="Slap the fly" data-src="demo/game.html"></iframe></div>
 </section>

@@ -326,3 +326,11 @@ html.view #viewbar { display: flex; position: fixed; left: 0; right: 0; bottom: 
 .slide[data-n="14"] .title { max-width: 700px; }
 
 .slide[data-n="14"] .col-r { top: 168px; bottom: auto; padding: 26px 30px 30px; border-radius: 28px; background: rgba(246,244,238,.94); box-shadow: 0 24px 60px -30px rgba(40,30,10,.35); }
+
+.ginfo { inset: 0; padding: 118px 96px 60px; }
+.gnums { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; }
+.gnums div { display: flex; align-items: baseline; gap: 26px; background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 18px 34px; box-shadow: 0 14px 40px -22px rgba(40,30,10,.22); }
+.gnums b { flex: none; min-width: 230px; font: 500 96px/1 var(--serif); color: var(--c); font-variant-numeric: tabular-nums; }
+.gnums b small { font-size: 34px; margin-left: 8px; }
+.gnums span { font-size: 32px; color: var(--soft); line-height: 1.25; }
+.gnote { margin-top: 28px; font: 500 36px/1.35 var(--serif); max-width: 1280px; }
