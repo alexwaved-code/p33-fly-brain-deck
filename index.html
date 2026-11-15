@@ -207,14 +207,12 @@ window.frameBox = function () {
 <!-- 12 -->
 <section class="slide" data-n="12" data-steps="1">
   <div data-only="0" class="ginfo">
-    <h2 class="title">Built from the public map</h2>
-    <p class="sub">Ten real cells. The program runs them, one millisecond at a time.</p>
-    <ol class="use3">
-      <li style="--c:var(--blue)"><b>1</b><div><h3>From the map</h3><p>The cells and the synapse counts are real. They come from the public MaleCNS data.</p></div></li>
-      <li style="--c:var(--amber)"><b>2</b><div><h3>Every millisecond</h3><p>Each cell adds up the signals it receives. More synapses mean a stronger push.</p></div></li>
-      <li style="--c:var(--green)"><b>3</b><div><h3>Pass it on</h3><p>When the push is high enough, the cell sends the signal to the next cell.</p></div></li>
-    </ol>
-    <p class="gnote">Anyone can use this map. This game is one real use of it. The timing is our model.</p>
+    <h2 class="title">Ten cells, from the public map</h2>
+    <p class="sub">A jump model on the male brain shell. The microscope images are not in it. Click a cell.</p>
+    <div class="grow">
+      <div class="circuit" id="circuit"><svg id="cwires"></svg></div>
+      <div class="cdetail" id="cdetail"></div>
+    </div>
   </div>
   <div data-only="1" class="gamewrap"><iframe id="game" title="Slap the fly" data-src="demo/game.html"></iframe></div>
 </section>

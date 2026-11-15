@@ -321,3 +321,50 @@ const h = location.hash.match(/^#(\d+)(?:\.(\d+))?/);
 if (h) { n = Math.max(1, Math.min(TOTAL, +h[1])); step = Math.max(0, Math.min(stepsOf(n), +(h[2] || 0))); }
 render(null);
 window.Deck = { go, next, prev, get n() { return n; }, get step() { return step; } };
+
+// Slide 12: the ten real cells. Counts are the MaleCNS edges hardcoded in circuit.js.
+const CIRC = [
+  { id: 22847, name: "LC4", syn: 67, nxt: "DNp01" }, { id: 16128, name: "LC4", syn: 65, nxt: "DNp01" },
+  { id: 17668, name: "LC4", syn: 63, nxt: "DNp01" }, { id: 24338, name: "LC4", syn: 63, nxt: "DNp01" },
+  { id: 20399, name: "LC4", syn: 62, nxt: "DNp01" }, { id: 22966, name: "LC4", syn: 61, nxt: "DNp01" },
+  { id: 22194, name: "LC4", syn: 59, nxt: "DNp01" }, { id: 22975, name: "LC4", syn: 58, nxt: "DNp01" },
+  { id: 10001, name: "DNp01", syn: 70, nxt: "TTMn" }, { id: 800146, name: "TTMn", syn: null, nxt: null },
+];
+const circ = $("#circuit");
+if (circ) {
+  const svg = $("#cwires"), detail = $("#cdetail");
+  const col = { LC4: "var(--blue)", DNp01: "var(--amber)", TTMn: "var(--green)" };
+  const btns = CIRC.map((c, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.style.setProperty("--c", col[c.name]);
+    b.innerHTML = `${c.name}${c.syn ? `<small>${c.syn}</small>` : ""}`;
+    b.addEventListener("click", (e) => { e.stopPropagation(); pick(i); });
+    circ.appendChild(b); return b;
+  });
+  const lines = [];
+  function place() {
+    const w = circ.clientWidth, h = circ.clientHeight;
+    const x = [150, w * 0.58, w - 110], yOf = (i) => i < 8 ? (i + 0.5) / 8 * h : h / 2;
+    const at = (i) => ({ x: x[i < 8 ? 0 : i === 8 ? 1 : 2], y: yOf(i) });
+    btns.forEach((b, i) => { const p = at(i); b.style.left = p.x + "px"; b.style.top = p.y + "px"; });
+    lines.forEach((l) => l.remove()); lines.length = 0;
+    CIRC.forEach((c, i) => {
+      if (c.syn == null) return;
+      const a = at(i), b = at(i < 8 ? 8 : 9);
+      const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      l.setAttribute("x1", a.x + 54); l.setAttribute("y1", a.y); l.setAttribute("x2", b.x - 54); l.setAttribute("y2", b.y);
+      svg.appendChild(l); lines.push(l);
+    });
+    if (picked >= 0) mark(picked);
+  }
+  let picked = -1;
+  function mark(i) { lines.forEach((l, k) => l.classList.toggle("hot", k === i || (i === 9 && k === 8))); }
+  function pick(i) {
+    picked = i; btns.forEach((b, k) => b.classList.toggle("on", k === i)); mark(i);
+    const c = CIRC[i];
+    const edge = c.syn == null ? "No edge onward. Its own transmitter is glutamate. The edge into it is acetylcholine."
+      : `${c.syn} synapses on to ${c.nxt}. Every edge is +1, acetylcholine.`;
+    detail.innerHTML = `<p class="k">MaleCNS v1.0 · cell ${i}</p><h3>${c.name}</h3><p class="num">#${c.id.toLocaleString("en-US")}</p><p>${edge}</p><p>Right-side LC4 in the public list: 55 cells, 2,580 contacts. This game uses these 8. Counts are scaled by 0.004.</p>`;
+  }
+  place(); pick(0); addEventListener("resize", place);
+}
