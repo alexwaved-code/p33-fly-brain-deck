@@ -314,3 +314,6 @@ html.view #viewbar { display: flex; position: fixed; left: 0; right: 0; bottom: 
 .relay li { --c: var(--ink); position: relative; width: 300px; text-align: left; padding: 20px 26px; border-radius: 22px; background: var(--paper); border: 3px solid var(--c); }
 .relay li + li::before { content: "→"; position: absolute; left: -41px; top: 50%; transform: translateY(-50%); font: 600 34px var(--sans); color: var(--faint); }
 .relay b { display: block; font: 700 32px var(--sans); color: var(--c); } .relay span { display: block; font-size: 25px; line-height: 1.3; color: var(--soft); margin-top: 6px; }
+.slide[data-n="12"][data-step="5"] .explain { opacity: 0; }
+.slide[data-n="12"] .parts { width: 660px; top: 196px; }
+.slide[data-n="12"] .kicker { margin-top: 8px; }
