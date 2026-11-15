@@ -209,11 +209,13 @@ window.frameBox = function () {
   <div data-only="0" class="vs">
     <p class="livepill">Live</p>
     <h2><span>Hand</span> <i>vs</i> <span class="amber-t">fly</span></h2>
-    <p class="vote">A race. The fly's signal must reach its leg before the hand lands.</p>
-    <div class="race">
-      <div><b>Hand</b><p>lands in <em>800 ms</em> on slow<br>and <em>45 ms</em> on fast</p></div>
-      <div class="fly"><b>Fly</b><p>the signal crosses <em>10</em> cells, then the leg<br>pushes off <em>28 ms</em> later</p></div>
-    </div>
+    <p class="vote">One signal, passed from cell to cell.</p>
+    <ol class="relay">
+      <li><b>Eye</b><span>sees the hand<br>getting bigger</span></li>
+      <li style="--c:var(--blue)"><b>LC4 × 8</b><span>pick it up and<br>send it on</span></li>
+      <li style="--c:var(--amber)"><b>Giant fiber</b><span>carries it down<br>through the neck</span></li>
+      <li style="--c:var(--green)"><b>TTMn</b><span>tells the leg<br>muscle to push</span></li>
+    </ol>
   </div>
   <div data-only="1" class="gamewrap"><iframe id="game" title="Slap the fly" data-src="demo/game.html"></iframe></div>
 </section>
