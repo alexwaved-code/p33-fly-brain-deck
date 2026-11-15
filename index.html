@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the male fruit fly's brain map is advancing neuroscience · Team P3-3</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27%23e08a00%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="deck.css">
+<script>
+// Self-guided deck: Back and Next on screen. The slide keeps a 16:9 frame above the bar.
+document.documentElement.classList.add("view");
+window.frameBox = function () {
+  const view = document.documentElement.classList.contains("view"), bar = view ? (innerHeight < 480 ? 50 : 66) : 0;
+  const k = Math.min(innerWidth / 1600, (innerHeight - bar) / 900), w = 1600 * k, h = 900 * k, x = (innerWidth - w) / 2, y = (innerHeight - bar - h) / 2;
+  const st = document.documentElement.style; st.setProperty("--fx", x + "px"); st.setProperty("--fy", y + "px"); st.setProperty("--fw", w + "px"); st.setProperty("--fh", h + "px"); st.setProperty("--bar", bar + "px");
+  return { view, k, w, h, x, y };
+};
+</script>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="labels"></div>
+
+<div id="deck">
+
+<!-- 1 -->
+<section class="slide" data-n="1" data-steps="0">
+  <div class="col-l w760 vmid">
+    <p class="kicker">IT 1020SEF · Team P3-3 · No. 4 · 17 November 2026</p>
+    <h1 class="title-xl rise">How the male fruit fly's brain map is advancing neuroscience</h1>
+    <ul class="team rise d2">
+      <li>Poon Man Kuk Chloe <span>14632630</span></li><li>Zhang QuanQiao <span>14635563</span></li>
+      <li>Lo Nga Lai <span>14646111</span></li><li>Zhu Ka Chun <span>14633350</span></li>
+      <li>Jim Tin Chi Alex <span>14639090</span></li><li>Tsoi Ching Ching <span>14636584</span></li>
+    </ul>
+    <p class="tiny rise d3">Tutor: Dr Dani</p>
+  </div>
+  <p class="stage-cap right">One male fly: brain and nerve cord · MaleCNS v1.0 · drag to turn</p>
+</section>
+
+<!-- 2 -->
+<section class="slide center" data-n="2" data-steps="2">
+  <h2 class="hook rise">Have you ever tried<br>to slap a fly?</h2>
+  <p class="hook2" data-s="1">…and did you hit it?</p>
+  <p class="punch" data-s="2">The fly is not lucky. The fly is <b>wired.</b></p>
+  <div id="bug" aria-hidden="true">
+    <svg viewBox="-30 -24 60 48" width="84" height="68">
+      <ellipse class="wing" cx="-6" cy="-9" rx="15" ry="7" transform="rotate(-24 -6 -9)"/>
+      <ellipse class="wing" cx="-6" cy="9" rx="15" ry="7" transform="rotate(24 -6 9)"/>
+      <ellipse cx="-3" cy="0" rx="13" ry="7" fill="#2a2823"/>
+      <circle cx="11" cy="0" r="6" fill="#2a2823"/>
+      <circle cx="14" cy="-3.2" r="2.6" fill="#e11d59"/><circle cx="14" cy="3.2" r="2.6" fill="#e11d59"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-n="3" data-steps="3">
+  <h2 class="title rise">Three words to read a brain map</h2>
+  <div class="cards3">
+    <article class="card c-blue" data-s="1">
+      <svg class="ico" viewBox="0 0 300 130"><g class="draw" stroke="var(--blue)" stroke-width="5" fill="none" stroke-linecap="round">
+        <path d="M150 65 L60 30"/><path d="M150 65 L55 95"/><path d="M150 65 L40 62"/><path d="M150 65 L270 65"/></g>
+        <circle cx="150" cy="65" r="22" fill="var(--blue)"/></svg>
+      <h3>Neuron</h3><p>a nerve cell</p>
+    </article>
+    <article class="card c-amber" data-s="2">
+      <svg class="ico" viewBox="0 0 300 130"><g stroke-width="5" stroke-linecap="round">
+        <path d="M20 65 L118 65" stroke="var(--blue)"/><path d="M182 65 L280 65" stroke="var(--green)"/></g>
+        <circle cx="122" cy="65" r="16" fill="var(--blue)"/><circle cx="178" cy="65" r="16" fill="var(--green)"/>
+        <circle class="spark" cx="122" cy="65" r="7" fill="var(--amber)"/></svg>
+      <h3>Synapse</h3><p>the contact where one neuron passes a signal to the next</p>
+    </article>
+    <article class="card c-green" data-s="3">
+      <svg class="ico" viewBox="0 0 300 130"><g class="draw" stroke="#b9b4a8" stroke-width="3.5" fill="none">
+        <path d="M40 40 L140 62"/><path d="M140 62 L110 105"/><path d="M140 62 L185 25"/><path d="M185 25 L262 95"/><path d="M110 105 L262 95"/><path d="M40 40 L110 105"/></g>
+        <circle cx="40" cy="40" r="13" fill="var(--blue)"/><circle cx="110" cy="105" r="13" fill="var(--amber)"/><circle cx="185" cy="25" r="13" fill="var(--green)"/><circle cx="262" cy="95" r="13" fill="var(--violet)"/><circle cx="140" cy="62" r="13" fill="var(--ink)"/></svg>
+      <h3>Connectome</h3><p>the wiring diagram of all those cells and contacts</p>
+    </article>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-n="4" data-steps="2">
+  <h2 class="title rise">A map of the wires.<br><span class="mute">Not a photo of the brain at work.</span></h2>
+  <div class="row gap60 mt40">
+    <svg id="metro" viewBox="0 0 700 300" width="700" height="300">
+      <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" class="draw">
+        <path d="M30 60 L190 60 L350 150 L520 150 L670 66" stroke="var(--blue)"/>
+        <path d="M60 240 L210 150 L350 150 L470 244 L660 244" stroke="var(--pink)"/>
+        <path d="M190 60 L210 150 L190 270" stroke="var(--green)"/>
+      </g>
+      <g fill="#fff" stroke="var(--ink)" stroke-width="5" class="pop">
+        <circle cx="30" cy="60" r="13"/><circle cx="190" cy="60" r="13"/><circle cx="350" cy="150" r="15"/><circle cx="520" cy="150" r="13"/><circle cx="670" cy="66" r="13"/>
+        <circle cx="60" cy="240" r="13"/><circle cx="210" cy="150" r="15"/><circle cx="470" cy="244" r="13"/><circle cx="660" cy="244" r="13"/><circle cx="190" cy="270" r="13"/>
+      </g>
+    </svg>
+    <div class="vmid">
+      <p class="lab green">A map shows</p><p class="big-serif">which stations connect</p>
+      <p class="lab pink mt30">A map does not show</p><p class="big-serif">where the trains are now</p>
+    </div>
+  </div>
+  <div class="row gap30 mt40" data-s="1">
+    <p class="pill wide"><span class="mute">MRI →</span> <b>regions</b></p>
+    <p class="pill wide amber"><span>Connectome →</span> <b>wires</b></p>
+  </div>
+  <p class="line mt24" data-s="2"><b class="amber-t">Why a fly?</b> A human brain is too big to map this way today. The fly's map is finished.</p>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-n="5" data-steps="0">
+  <h2 class="title rise">Six stops along one wire</h2>
+  <div id="route">
+    <div class="rail"><i></i></div>
+    <div class="stop" style="--c:var(--blue)"><b>1</b><p>What a<br>connectome is</p><span>Chloe P.</span></div>
+    <div class="stop" style="--c:var(--amber)"><b>2</b><p>This map:<br>166,691 neurons</p><span>Lily</span></div>
+    <div class="stop" style="--c:var(--violet)"><b>3</b><p>Its five<br>parts</p><span>Alex</span></div>
+    <div class="stop" style="--c:var(--pink)"><b>4</b><p>Same in<br>both sexes?</p><span>Austin</span></div>
+    <div class="stop" style="--c:var(--green)"><b>5</b><p>How it<br>was built</p><span>Gordon</span></div>
+    <div class="stop" style="--c:var(--ink)"><b>6</b><p>Open it<br>tonight</p><span>Chloe K.</span></div>
+  </div>
+  <p class="serif-it center-t mt60 rise d3">From an eye to a leg, and then to your own laptop.</p>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-n="6" data-steps="2">
+  <div class="col-l w760 vmid">
+    <p class="kicker rise">One adult male fruit fly · 2026</p>
+    <div data-s="1"><p class="mega" id="count166" data-to="166691">166,691</p><p class="mega-sub">neurons</p></div>
+    <div class="chip-xl" data-s="2"><b>Brain <i>+</i> nerve cord</b><span>in one map, still joined</span></div>
+  </div>
+  <p class="stage-cap right">The published shapes · MaleCNS v1.0<br><b>In IT terms, a dataset:</b> neuron = record · connection = link</p>
+  <footer class="src"><button class="cite">Berg et al., 2026</button></footer>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-n="7" data-steps="1">
+  <h2 class="title rise">Where the number comes from</h2>
+  <div class="row gap60 mt50">
+    <div class="w860">
+      <figure class="clip rise d1"><img src="img/abstract.png" alt="Abstract of the study with 166,691 neurons highlighted"><i class="ring"></i></figure>
+      <p class="paper rise d2">Berg et al., <i>Cell</i>, 2026</p>
+      <p class="tiny rise d2">Abstract as posted with the preprint of the same study (Berg et al., 2025) · Also on the Google Research blog, 3 September 2026</p>
+    </div>
+    <div class="stack" data-s="1">
+      <div class="fact c-blue st1"><b>Fully proofread</b><span>people checked it</span></div>
+      <div class="fact c-amber st2"><b>11,691 cell types</b><span>a type is a job title</span></div>
+      <div class="fact c-pink st3"><b><i>fruitless</i> + <i>doublesex</i></b><span>genes marking many sex-difference cells</span></div>
+    </div>
+  </div>
+  <footer class="src"><button class="cite">Berg et al., 2025, 2026</button><button class="cite">Januszewski &amp; Jain, 2026</button></footer>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-n="8" data-steps="2">
+  <h2 class="title rise">2024 and 2026: two different animals</h2>
+  <div class="duo">
+    <div class="animal rise d1"><p class="lab violet">2024 · female</p><p class="num">139,255 <span>neurons</span></p><p class="line">Brain only. No nerve cord.</p></div>
+    <div class="animal" data-s="1"><p class="lab amber-t">2026 · male</p><p class="num">166,691 <span>neurons</span></p><p class="line">Brain + nerve cord, joined.</p></div>
+  </div>
+  <p class="strap" data-s="2"><b>Compare them.</b> Never glue them into one body.</p>
+  <footer class="src"><button class="cite">Dorkenwald et al., 2024</button><button class="cite">Berg et al., 2026</button></footer>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-n="9" data-steps="5">
+  <h2 class="title rise">Five parts, in the order a signal travels</h2>
+  <ol class="parts">
+    <li data-s="1" style="--c:var(--blue)"><b>1</b><div><h3>Compound eye</h3><p>light and images come in</p></div></li>
+    <li data-s="2" style="--c:var(--amber)"><b>2</b><div><h3>Central brain</h3><p>decision and memory</p></div></li>
+    <li data-s="3" style="--c:var(--ink)"><b>3</b><div><h3>Neck</h3><p>the path down from the brain</p></div></li>
+    <li data-s="4" style="--c:var(--violet)"><b>4</b><div><h3>Ventral nerve cord</h3><p>the insect's spinal cord</p></div></li>
+    <li data-s="5" style="--c:var(--green)"><b>5</b><div><h3>Motor neurons</h3><p>signal becomes movement</p></div></li>
+  </ol>
+  <footer class="src"><button class="cite">Berg et al., 2026</button><span>Shapes: MaleCNS v1.0</span></footer>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-n="10" data-steps="3">
+  <h2 class="title rise">The neck was not cut</h2>
+  <div class="col-r w620 vmid">
+    <p class="say" data-only="0">Touch your<br>own neck.</p>
+    <p class="say" data-only="1"><span class="pink-t">Cut here:</span><br>the brain decides.<br>The legs never hear.</p>
+    <div data-s="2">
+      <div class="chip-xl amber"><b>One real neuron</b><span>brain → neck → nerve cord</span></div>
+      <div data-s="3" class="mt40"><p class="path"><i style="color:var(--blue)">EYE</i> → <i style="color:var(--amber)">BRAIN</i> → <i>NECK</i> → <i style="color:var(--violet)">CORD</i> → <i style="color:var(--green)">LEG</i></p><p class="line mt10">A signal can be followed all the way.</p></div>
+    </div>
+  </div>
+  <footer class="src"><button class="cite">Berg et al., 2026</button><span>Line: one published neuron skeleton, drawn thicker</span></footer>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-n="11" data-steps="2">
+  <h2 class="title rise">Male and female: mostly the same wiring</h2>
+  <p class="sub rise d1">The first full comparison of a male and a female brain, synapse by synapse. One square = one cell type.</p>
+  <div class="row gap50 mt30">
+    <canvas id="dots" width="1640" height="1000"></canvas>
+    <div class="tally">
+      <div data-s="1" style="--c:var(--blue)"><b data-count="7205">7,205</b><span>the same in both sexes</span></div>
+      <div data-s="2" style="--c:var(--amber)"><b data-count="114">114</b><span>in both sexes, different partners</span></div>
+      <div data-s="2" style="--c:var(--pink)"><b data-count="262">262</b><span>male only</span></div>
+      <div data-s="2" style="--c:var(--violet)"><b data-count="69">69</b><span>female only</span></div>
+    </div>
+  </div>
+  <footer class="src"><button class="cite">Berg et al., 2026</button></footer>
+</section>
+
+<!-- 12 -->
+<section class="slide center" data-n="12" data-steps="1">
+  <div data-only="0" class="vs">
+    <p class="livepill">Live</p>
+    <h2><span>Hand</span> <i>vs</i> <span class="amber-t">fly</span></h2>
+    <p class="vote">Who wins? Vote now.</p>
+    <div class="row gap30 jc mt30"><button class="votebtn" data-vote="hand">Hand <b>0</b></button><button class="votebtn fly" data-vote="fly">Fly <b>0</b></button></div>
+    <button id="voteclear">Clear votes</button>
+  </div>
+  <div data-only="1" class="gamewrap"><iframe id="game" title="Slap the fly" data-src="demo/game.html"></iframe></div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-n="13" data-steps="2">
+  <h2 class="title rise">What beat the hand: ten cells</h2>
+  <ol class="parts wide3" id="pathlist">
+    <li style="--c:var(--blue)"><b>1</b><div><h3>LC4 × 8</h3><p>see a dark shape getting bigger</p><p class="syn"><u>67</u><u>65</u><u>63</u><u>63</u><u>62</u><u>61</u><u>59</u><u>58</u> <em>synapses ↓</em></p></div></li>
+    <li style="--c:var(--amber)"><b>2</b><div><h3>Giant fiber</h3><p>carries it through the neck</p><p class="syn"><u>70</u> <em>synapses ↓</em></p></div></li>
+    <li style="--c:var(--green)"><b>3</b><div><h3>TTMn <small>motor neuron</small></h3><p>kicks the middle leg</p></div></li>
+  </ol>
+  <div class="col-r w620 below" data-s="2"><p class="pill dark">Shared by both sexes</p><p class="tiny mt10">Acetylcholine at every step, so the signals add. The game is a model of these ten cells, not a recording.</p></div>
+  <button class="replay" id="replay">Replay signal</button>
+  <footer class="src"><button class="cite">MaleCNS v1.0 traced weights</button></footer>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-n="14" data-steps="2">
+  <h2 class="title rise">Where the sexes split: higher in the brain</h2>
+  <div class="col-r w620 vmid">
+    <p class="line rise d1"><span class="mute">Eye, muscle:</span> <b>mostly shared</b><br><span class="mute">Higher centres:</span> <b class="pink-t">different</b></p>
+    <div class="chip-xl pink mt30" data-s="1"><b><em>pIP10</em> · male only</b><span>Switch it on: the male sings his courtship song</span></div>
+    <div class="chip-xl amber mt24" data-s="2"><b>Same sense in → opposite behaviour out</b><span>male-only connections form hotspots</span></div>
+  </div>
+  <footer class="src"><button class="cite">Berg et al., 2026</button><button class="cite">von Philipsborn et al., 2011</button></footer>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-n="15" data-steps="2">
+  <h2 class="title rise">Three honest limits</h2>
+  <div class="cards3 short" data-s="1">
+    <article class="card c-blue st1"><h3>One animal</h3><p>a single male fly</p></article>
+    <article class="card c-amber st2"><h3>No voltages</h3><p>wiring, not activity</p></article>
+    <article class="card c-pink st3"><h3>Not a human</h3><p>a different brain</p></article>
+  </div>
+  <div class="center-t mt50" data-s="2"><p class="huge-line">Human brain: about <b class="amber-t">86 billion</b> neurons</p><p class="sub">not mapped this way</p></div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-n="16" data-steps="1">
+  <p class="kicker rise">The IT story</p>
+  <h2 class="title rise">A fly goes in. A map comes out.</h2>
+  <div class="pipe" data-s="1">
+    <canvas id="flow" width="2840" height="120"></canvas>
+    <div class="stage4 st1" style="--c:var(--blue)"><small>1 · Input</small><b>Electron microscopes</b><span>scan the fly</span></div>
+    <div class="stage4 st2" style="--c:var(--amber)"><small>2 · Processing</small><b>Neural networks</b><span>trace every neuron</span></div>
+    <div class="stage4 st3" style="--c:var(--violet)"><small>3 · Storage</small><b>Cloud storage</b><span>scan and wiring</span></div>
+    <div class="stage4 st4" style="--c:var(--green)"><small>4 · Service</small><b>Public queries</b><span>anyone can ask</span></div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-n="17" data-steps="2">
+  <p class="kicker rise">Stage 1 of 4 · Input</p>
+  <h2 class="title rise">The input device is a microscope</h2>
+  <div class="stats">
+    <div class="stat rise d1" style="--c:var(--blue)"><b data-count="7">7</b><span>electron<br>microscopes</span></div>
+    <div class="stat rise d2" style="--c:var(--blue)"><b data-count="13">13</b><span>months<br>of scanning</span></div>
+    <div class="stat" data-s="1" style="--c:var(--amber)"><b>8<small> nm</small></b><span>each voxel<br>(a 3D pixel)</span></div>
+    <div class="stat" data-s="1" style="--c:var(--amber)"><b>0.082</b><span>mm³ (about):<br>the whole sample</span></div>
+  </div>
+  <p class="band" data-s="2"><b>≈ 160 teravoxels</b> = 160 trillion 3D pixels</p>
+  <footer class="src"><button class="cite">Berg et al., 2026, Methods</button></footer>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-n="18" data-steps="2">
+  <p class="kicker rise">Stage 2 of 4 · Processing</p>
+  <h2 class="title rise">A network grows each neuron from one voxel</h2>
+  <div class="row gap60 mt40">
+    <div><div id="voxels"></div><p class="line mt16"><b class="amber-t">Flood-filling network</b> · one voxel → one whole neuron</p></div>
+    <div class="vmid" data-s="2">
+      <p class="lab mute">Then it finds the synapses</p>
+      <p class="num2" style="--c:var(--blue)"><b>≈ 46 million</b> sending sites</p>
+      <p class="num2" style="--c:var(--green)"><b>≈ 312 million</b> receiving sites</p>
+      <div class="row gap24 mt30"><div class="mini"><b>Precision ≈ 0.82</b><span>most of what it finds is real</span></div><div class="mini"><b>Recall ≈ 0.81</b><span>it finds most of what is there</span></div></div>
+    </div>
+  </div>
+  <footer class="src"><button class="cite">Januszewski et al., 2018</button><button class="cite">Berg et al., 2026, Methods</button></footer>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-n="19" data-steps="3">
+  <p class="kicker rise">Stage 2 of 4 · Checking the draft</p>
+  <h2 class="title rise">Two kinds of mistake. Then humans.</h2>
+  <div class="row gap40 mt40">
+    <div class="err" data-s="1"><div class="bars split"><i></i><i></i></div><h3>Split</h3><p>one cell cut into two pieces</p></div>
+    <div class="err" data-s="2"><div class="bars merge"><i></i><i></i></div><h3>Merge</h3><p>two cells stuck together as one</p></div>
+  </div>
+  <div class="row gap50 mt40 ac" data-s="3">
+    <div><p class="big-serif xl">Then people proofread.</p><p class="line mute">Humans check the draft and fix it.</p></div>
+    <div class="chip-xl violet"><b>Stage 3 of 4 · Storage</b><span>The scan and the finished wiring, in cloud storage</span></div>
+  </div>
+  <footer class="src"><button class="cite">Berg et al., 2026, Methods</button></footer>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-n="20" data-steps="0">
+  <p class="kicker rise">Stage 4 of 4 · Service</p>
+  <h2 class="title-xl rise">Open it tonight</h2>
+  <div class="row gap60 mt40 ac">
+    <div>
+      <p class="url rise d1"><a href="https://male-cns.janelia.org/" target="_blank" rel="noreferrer">male-cns.janelia.org</a></p>
+      <div class="row gap24 mt40 rise d2"><p class="pill green">Free</p><p class="pill">The portal, and the full download</p></div>
+      <p class="serif-it mt40 rise d3">The same map you have just seen.</p>
+    </div>
+    <figure class="qr rise d2"><img src="img/qr-portal.svg" alt="QR code for male-cns.janelia.org"><figcaption>Scan to open</figcaption></figure>
+  </div>
+  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-n="21" data-steps="3">
+  <p class="kicker rise">Stage 4 of 4 · Service</p>
+  <h2 class="title rise">Three tools, three questions</h2>
+  <div class="cards3 tools">
+    <article class="card c-blue" data-s="1"><p class="q">Where do I get it?</p><h3>The portal</h3><p>male-cns.janelia.org<br>front door and download</p></article>
+    <article class="card c-amber" data-s="2"><p class="q">What does it look like?</p><h3>Neuroglancer</h3><p>the neurons in 3D</p></article>
+    <article class="card c-green" data-s="3"><p class="q">Who connects to whom?</p><h3>neuPrint</h3><p>dataset male-cns:v1.0<br>a public query service</p><p class="qa"><span>Giant fiber → TTMn?</span><b>70 synapses</b></p></article>
+  </div>
+  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
+</section>
+
+<!-- 22 -->
+<section class="slide" data-n="22" data-steps="1">
+  <p class="kicker rise">On the market</p>
+  <h2 class="title rise">Nothing to buy. The product is the data.</h2>
+  <div class="row gap40 mt50" data-s="1">
+    <div class="chip-xl amber grow"><b class="ccby">CC BY</b><span>use it · share it · build on it · give credit</span></div>
+    <div class="chip-xl grow"><b>Our class demo</b><span>our own window onto the data, not a Janelia product</span></div>
+  </div>
+  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-n="23" data-steps="3">
+  <h2 class="title rise">How the map is advancing neuroscience</h2>
+  <ol class="adv" data-s="1">
+    <li class="st1" style="--c:var(--blue)"><b>1</b><div><h3>The whole road</h3><p>brain + nerve cord in one map: eye to leg</p></div></li>
+    <li class="st2" style="--c:var(--pink)"><b>2</b><div><h3>Male and female, compared</h3><p>for the first time, synapse by synapse</p></div></li>
+    <li class="st3" style="--c:var(--green)"><b>3</b><div><h3>Open to everyone</h3><p>free, checkable, tonight</p></div></li>
+  </ol>
+  <div class="chip-xl green rowchip next" data-s="2"><small>Next</small><b>Less proofreading by hand · behaviour laid on top of the wiring</b></div>
+  <p class="punch small" data-s="3">Next time a fly escapes your hand: <b>you lost to a wiring diagram.</b></p>
+  <footer class="src"><button class="cite">Berg et al., 2026</button></footer>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-n="24" data-steps="0">
+  <div class="col-l w760 vmid">
+    <h2 class="thanks rise">Thank you</h2>
+    <p class="kicker rise d1">Team P3-3 · IT 1020SEF · 17 November 2026</p>
+    <p class="line mt40 rise d2">Chloe P. · Lily · Alex · Austin · Gordon · Chloe K.</p>
+  </div>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-n="25" data-steps="0">
+  <h2 class="title rise">References</h2>
+  <ol class="refs rise d1" id="refs"></ol>
+</section>
+
+</div>
+
+<nav id="track"></nav>
+<div id="hud"><span id="clock" hidden>0:00</span><span id="pageno"></span></div>
+<aside id="prompter" hidden><div class="who"></div><p class="now"></p><p class="next"></p></aside>
+<aside id="evidence" hidden><div class="sheet"><button class="x" aria-label="Close">×</button><h3>Evidence</h3><div class="items"></div></div></aside>
+<nav id="viewbar"><button id="vprev" aria-label="Back">‹ Back</button><div class="vprog"><span id="vpos"></span><i><b id="vfill"></b></i></div><button id="vnext" aria-label="Next">Next ›</button>
+<div id="taphint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/></svg><span></span></div></nav>
+<p id="turn">Turn your phone sideways for a bigger view</p>
+
+<script src="notes.js"></script>
+<script src="evidence.js"></script>
+<script type="module" src="stage.js"></script>
+<script type="module" src="deck.js"></script>
+</body>
+</html>
