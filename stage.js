@@ -213,17 +213,13 @@ const VIEWS = {
       neu: { gf: s >= 1 ? on() : N0() },
       tags: [{ id: "tb", t: "BRAIN", txt: 1, at: "brain", dy: -250 }, { id: "tn", t: "NECK", txt: 1, at: "neck", dy: -90 }, { id: "tc", t: "NERVE CORD", txt: 1, at: "neck", dx: 250, dy: -190 }] })
     : ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.45 }, brain: { op: 0.45 }, neck: lit(C.ink, 0.5), cord: { op: 0.45 } }, neu: { lc4: on(), gf: on(), ttmn: on() } }),
-  12: (s) => ({ vis: s >= 5 ? 0 : 1, cam: LEFT,
-    shells: { eye: s >= 1 ? lit(C.blue, 0.6) : { op: 0.25 }, brain: { op: 0.3 }, neck: { op: 0.3 }, cord: { op: 0.3 } },
-    neu: { lc4: s >= 2 ? on() : N0(), gf: s >= 3 ? on() : N0(), ttmn: s >= 4 ? on() : N0() },
-    tags: [s >= 1 && { id: "e", t: "1", c: C.blue, at: "eyeL" }, s >= 2 && { id: "l", t: "2", c: C.blue, at: "lc4", dx: -70, dy: 40 },
-      s >= 3 && { id: "g", t: "3", c: C.amber, at: "neck", dy: -50 }, s >= 4 && { id: "m", t: "4", c: C.green, at: "ttmn", dy: 64 }].filter(Boolean) }),
   13: (s) => ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.4 }, brain: { op: 0.4 }, neck: { op: 0.4 }, cord: { op: 0.4 } },
     neu: { lc4: on(s >= 1 ? 1 : 0), gf: on(s >= 1 ? 1 : 0), ttmn: on(s >= 1 ? 1 : 0) },
     tags: s >= 1 ? [{ id: "s1", t: "1", c: C.blue, at: "lc4", dx: -70, dy: 40 }, { id: "s2", t: "2", c: C.amber, at: "neck", dy: -50 }, { id: "s3", t: "3", c: C.green, at: "ttmn", dy: 64 }] : [] }),
-  14: (s) => ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.4 }, brain: { op: 0.4 }, neck: { op: 0.4 }, cord: { op: 0.4 } },
-    neu: { lc4: on(0), gf: on(0), ttmn: on(0), pip10: s >= 1 ? on() : N0() },
-    tags: s >= 1 ? [{ id: "pp", t: "pIP10", c: C.pink, at: "pip10", dx: -30, dy: -150 }] : [] }),
+  14: (s) => ({ vis: 1, cam: { a: 0.55, yaw: -0.15, r: 780, ox: -380, oy: 30, at: "brain" },
+    shells: { eye: { op: 0.1 }, brain: lit(C.ink, 0.28), neck: { op: 0.05 }, cord: { op: 0 } },
+    neu: { lc4: N0(), gf: N0(), ttmn: N0(), pip10: s >= 1 ? on() : N0() },
+    tags: s >= 1 ? [{ id: "pp", t: "pIP10", txt: 1, c: C.pink, at: "pip10", dx: 90, dy: -40 }] : [] }),
   24: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2400, ox: 460, oy: 0 }, neu: allNeu }),
 };
 

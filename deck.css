@@ -317,3 +317,10 @@ html.view #viewbar { display: flex; position: fixed; left: 0; right: 0; bottom: 
 .slide[data-n="12"][data-step="5"] .explain { opacity: 0; }
 .slide[data-n="12"] .parts { width: 660px; top: 196px; }
 .slide[data-n="12"] .kicker { margin-top: 8px; }
+
+.vs h2.plain { font-size: 132px; letter-spacing: -.02em; }
+.splitnums { display: grid; gap: 8px; }
+.splitnums div { display: flex; align-items: baseline; gap: 18px; }
+.splitnums b { font: 500 72px/1 var(--serif); color: var(--c); min-width: 150px; font-variant-numeric: tabular-nums; }
+.splitnums span { font-size: 28px; color: var(--soft); }
+.slide[data-n="14"] .title { max-width: 700px; }

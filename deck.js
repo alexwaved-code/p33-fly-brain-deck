@@ -277,8 +277,7 @@ function fx(from) {
   if (dOn && !dotOn) { dotOn = true; requestAnimationFrame(dotFrame); } else if (!dOn) dotOn = false;
 
   if (n === 11 || n === 12) loadGame();
-  if (n === 12 && step === 4 && (entered || from.step < 4)) setTimeout(() => n === 12 && step === 4 && window.Stage && window.Stage.signal(), entered ? 700 : 150);
-  if (n === 12 && step === 5) setTimeout(() => game.focus(), 300);
+  if (n === 12 && step === 1) setTimeout(() => game.focus(), 300);
 
   if (n === 13) {
     if (step === 0) pathItems.forEach((li) => li.classList.remove("lit", "hot"));
