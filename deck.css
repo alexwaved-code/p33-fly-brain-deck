@@ -184,6 +184,15 @@ a { color: inherit; }
 .sextally b { display: block; font: 500 64px/1 var(--serif); color: var(--c); font-variant-numeric: tabular-nums; }
 .sextally span { display: block; margin-top: 2px; font-size: 22px; color: var(--soft); }
 .sexside .tiny { margin-top: 4px; }
+.sexside .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 100%; }
+.pair > div { background: #fff; border: 1px solid var(--line); border-radius: 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 18px 8px 16px; box-shadow: 0 14px 40px -24px rgba(40,30,10,.28); }
+.pair b { font: 500 36px/1 var(--serif); }
+.pair svg { width: 190px; height: 340px; }
+.pair span { font: 600 18px/1.3 var(--sans); color: var(--soft); text-align: center; }
+.pair i { display: block; font: 500 34px/1 var(--serif); font-style: normal; color: var(--ink); margin-bottom: 4px; }
+.pair .pip { font: 700 22px var(--sans); fill: var(--pink); }
+.wingflap { transform-origin: 0 0; animation: wingflap .14s ease-in-out infinite alternate; }
+@keyframes wingflap { from { transform: rotate(-8deg); } to { transform: rotate(16deg); } }
 
 /* 12 */
 .vs { inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
