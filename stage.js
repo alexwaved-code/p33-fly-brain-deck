@@ -37,7 +37,7 @@ function brainGlass(hex) {
         vec3 n = normalize(vN); float ndv = clamp(dot(n, normalize(vV)), 0.0, 1.0);
         float rim = pow(1.0 - ndv, 1.7); float lam = 0.36 + 0.78 * max(dot(n, lightDir), 0.0);
         float groove = smoothstep(0.015, -0.055, vC);
-        vec3 c = mix(color, color * 0.38, groove) * lam + rim * vec3(0.85, 0.92, 1.0);
+        vec3 c = mix(color, color * 0.38, groove) * lam + rim * vec3(1.0, 0.72, 0.82);
         gl_FragColor = vec4(c, opacity * (0.26 + 0.58 * rim + groove * 0.15)); }`,
   });
 }
@@ -161,7 +161,7 @@ const humanOrient = new THREE.Group(); humanOrient.rotation.x = -Math.PI / 2; hu
 const humanSpin = new THREE.Group(); humanOrient.add(humanSpin);
 const humanMats = [];
 function buildHumanBrain() {
-  const mat = brainGlass("#d7e2ec"); humanMats.push(mat);
+  const mat = brainGlass("#e11d59"); humanMats.push(mat);
   humanSpin.add(new THREE.Mesh(foldedSphere(128, 96, cerebrumShape), mat));
   const bell = new THREE.Mesh(foldedSphere(72, 48, cerebellumShape), mat);
   bell.position.set(0, -0.5, -0.74); bell.scale.setScalar(0.44); humanSpin.add(bell);
