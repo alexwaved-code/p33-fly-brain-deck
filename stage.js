@@ -198,7 +198,7 @@ const VIEWS = {
     shells: s >= 2 ? { eye: lit(C.amber, 0.7), brain: lit(C.amber, 0.7), neck: lit(C.ink, 0.8), cord: lit(C.violet, 0.7) } : {} }),
   8: (s) => ({ vis: 1, femaleVis: 1, maleVis: s >= 1 ? 1 : 0, maleX: 640, cam: { a: 0.22, yaw: 0, r: 3300, ox: 0, oy: -95, at: "origin" },
     shells: { eye: lit(C.amber, 0.75), brain: lit(C.amber, 0.75), neck: lit(C.amber, 0.75), cord: lit(C.amber, 0.75) } }),
-  9: (s) => {
+  11: (s) => {
     const sh = {}, tags = [];
     PARTS.forEach(([k, c], i) => { if (s >= i + 1) sh[k] = lit(c); });
     if (s >= 1) tags.push({ id: "p1a", t: "1", c: C.blue, at: "eyeL" }, { id: "p1b", t: "1", c: C.blue, at: "eyeR" });
@@ -208,20 +208,21 @@ const VIEWS = {
     if (s >= 5) { tags.push({ id: "p5", t: "5", c: C.green, at: "ttmn", dy: 60 }); sh.cord = lit(C.violet, 0.45); }
     return { vis: 1, cam: LEFT, shells: sh, neu: { ttmn: s >= 5 ? on() : N0() }, tags };
   },
-  10: (s) => s < 2 ? ({ vis: 1, cut: s === 0 ? 1 : 0, cam: { a: 0.3, yaw: 0.1, r: 1050, ox: -330, oy: 40, at: "neck" },
+  13: (s) => s < 2 ? ({ vis: 1, cut: s === 0 ? 1 : 0, cam: { a: 0.3, yaw: 0.1, r: 1050, ox: -330, oy: 40, at: "neck" },
       shells: { neck: lit(s === 0 ? C.pink : C.ink, 0.5), eye: { op: 0.35 }, brain: { op: 0.5 }, cord: { op: 0.5 } },
       neu: { gf: s >= 1 ? on() : N0() },
       tags: [{ id: "tb", t: "BRAIN", txt: 1, at: "brain", dy: -250 }, { id: "tn", t: "NECK", txt: 1, at: "neck", dy: -90 }, { id: "tc", t: "NERVE CORD", txt: 1, at: "neck", dx: 250, dy: -190 }] })
     : ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.45 }, brain: { op: 0.45 }, neck: lit(C.ink, 0.5), cord: { op: 0.45 } }, neu: { lc4: on(), gf: on(), ttmn: on() } }),
-  12: (s) => ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.4 }, brain: { op: 0.4 }, neck: { op: 0.4 }, cord: { op: 0.4 } },
+  15: (s) => ({ vis: 1, cam: LEFT, shells: { eye: { op: 0.4 }, brain: { op: 0.4 }, neck: { op: 0.4 }, cord: { op: 0.4 } },
     neu: { lc4: on(s >= 1 ? 1 : 0), gf: on(s >= 1 ? 1 : 0), ttmn: on(s >= 1 ? 1 : 0) },
     tags: s >= 1 ? [{ id: "s1", t: "1", c: C.blue, at: "lc4", dx: -70, dy: 40 }, { id: "s2", t: "2", c: C.amber, at: "neck", dy: -50 }, { id: "s3", t: "3", c: C.green, at: "ttmn", dy: 64 }] : [] }),
-  13: (s) => ({ vis: 1, cam: { a: 0.55, yaw: -0.15, r: 780, ox: -380, oy: 30, at: "brain" },
+  16: (s) => ({ vis: 1, cam: { a: 0.55, yaw: -0.15, r: 780, ox: -380, oy: 30, at: "brain" },
     shells: { eye: { op: 0.1 }, brain: lit(C.ink, 0.28), neck: { op: 0.05 }, cord: { op: 0 } },
     neu: { lc4: N0(), gf: N0(), ttmn: N0(), pip10: s >= 1 ? on() : N0() },
     tags: s >= 1 ? [{ id: "pp", t: "pIP10", txt: 1, c: C.pink, at: "pip10", dx: 90, dy: -40 }] : [] }),
-  23: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2400, ox: 460, oy: 0 }, neu: allNeu }),
+  24: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2400, ox: 460, oy: 0 }, neu: allNeu }),
 };
+VIEWS[12] = VIEWS[8];
 
 let ready = false, flipX = 1;
 let tgt = base(), cur = base();

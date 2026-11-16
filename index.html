@@ -81,45 +81,31 @@ window.frameBox = function () {
 </section>
 
 <!-- 4 -->
-<section class="slide" data-n="4" data-steps="2">
-  <h2 class="title rise">A map of the wires.<br><span class="mute">Not a photo of the brain at work.</span></h2>
-  <div class="row gap60 mt40">
-    <svg id="metro" viewBox="0 0 700 300" width="700" height="300">
-      <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" class="draw">
-        <path d="M30 60 L190 60 L350 150 L520 150 L670 66" stroke="var(--blue)"/>
-        <path d="M60 240 L210 150 L350 150 L470 244 L660 244" stroke="var(--pink)"/>
-        <path d="M190 60 L210 150 L190 270" stroke="var(--green)"/>
-      </g>
-      <g fill="#fff" stroke="var(--ink)" stroke-width="5" class="pop">
-        <circle cx="30" cy="60" r="13"/><circle cx="190" cy="60" r="13"/><circle cx="350" cy="150" r="15"/><circle cx="520" cy="150" r="13"/><circle cx="670" cy="66" r="13"/>
-        <circle cx="60" cy="240" r="13"/><circle cx="210" cy="150" r="15"/><circle cx="470" cy="244" r="13"/><circle cx="660" cy="244" r="13"/><circle cx="190" cy="270" r="13"/>
-      </g>
-    </svg>
-    <div class="vmid">
-      <p class="lab green">A map shows</p><p class="big-serif">which stations connect</p>
-      <p class="lab pink mt30">A map does not show</p><p class="big-serif">where the trains are now</p>
-    </div>
+<section class="slide" data-n="4" data-steps="1">
+  <h2 class="title rise">How this map was made</h2>
+  <div class="make">
+    <div class="stage4" style="--c:var(--blue)"><small>1</small><b>Thin sections</b><span>brain and body</span></div>
+    <div class="stage4" style="--c:var(--amber)"><small>2</small><b>Each slice</b><span>imaged</span></div>
+    <div class="stage4" style="--c:var(--violet)"><small>3</small><b>2D images</b><span>read by a network</span></div>
+    <div class="stage4" style="--c:var(--green)"><small>4</small><b>3D shapes</b><span>one pixel becomes one neuron</span></div>
   </div>
-  <div class="row gap30 mt40" data-s="1">
-    <p class="pill wide"><span class="mute">MRI →</span> <b>regions</b></p>
-    <p class="pill wide amber"><span>Connectome →</span> <b>wires</b></p>
+  <p class="lab" data-s="1">Categorised by size, shape, function, and genes</p>
+  <div class="outs" data-s="1">
+    <article style="--c:var(--blue)"><h3>Mechanisms</h3><p>how the brain works</p></article>
+    <article style="--c:var(--amber)"><h3>Classifications</h3><p>166,691 neurons</p></article>
+    <article style="--c:var(--pink)"><h3>Demonstration</h3><p>stimulus to motion, and male or female</p></article>
   </div>
-  <p class="line mt24" data-s="2"><b class="amber-t">Why a fly?</b> A human brain is too big to map this way today. The fly's map is finished.</p>
+  <footer class="src"><button class="cite">Berg et al., 2026</button><button class="cite">Januszewski et al., 2018</button></footer>
 </section>
 
 <!-- 5 -->
-<section class="slide" data-n="5" data-steps="0">
-  <h2 class="title rise">Six stops along one wire</h2>
-  <div id="route">
-    <div class="rail"><i></i></div>
-    <div class="stop" style="--c:var(--blue)"><b>1</b><p>What a<br>connectome is</p><span>Chloe P.</span></div>
-    <div class="stop" style="--c:var(--amber)"><b>2</b><p>This map:<br>166,691 neurons</p><span>Lily</span></div>
-    <div class="stop" style="--c:var(--violet)"><b>3</b><p>Its five<br>parts</p><span>Alex</span></div>
-    <div class="stop" style="--c:var(--pink)"><b>4</b><p>Same in<br>both sexes?</p><span>Austin</span></div>
-    <div class="stop" style="--c:var(--green)"><b>5</b><p>How it<br>was built</p><span>Gordon</span></div>
-    <div class="stop" style="--c:var(--ink)"><b>6</b><p>Open it<br>tonight</p><span>Chloe K.</span></div>
+<section class="slide" data-n="5" data-steps="1">
+  <h2 class="title rise">Why a fruit fly, not a human</h2>
+  <div class="duo">
+    <div class="animal"><p class="lab">Human</p><p class="num">86 billion <span>neurons</span></p><p class="line">Not yet possible.</p></div>
+    <div class="animal" data-s="1"><p class="lab amber-t">Fruit fly</p><p class="line">Perceive the world.</p><p class="line">React to stimuli.</p><p class="line">Repair damaged pathways, one day?</p></div>
   </div>
-  <p class="serif-it center-t mt60 rise d3">From an eye to a leg, and then to your own laptop.</p>
+  <footer class="src"><button class="cite">Berg et al., 2026</button></footer>
 </section>
 
 <!-- 6 -->
@@ -145,7 +131,6 @@ window.frameBox = function () {
     <div class="stack" data-s="1">
       <div class="fact c-blue st1"><b>Fully proofread</b><span>people checked it</span></div>
       <div class="fact c-amber st2"><b>11,691 cell types</b><span>a type is a job title</span></div>
-      <div class="fact c-pink st3"><b><i>fruitless</i> + <i>doublesex</i></b><span>genes marking many sex-difference cells</span></div>
     </div>
   </div>
   <footer class="src"><button class="cite">Berg et al., 2025, 2026</button><button class="cite">Januszewski &amp; Jain, 2026</button></footer>
@@ -163,7 +148,30 @@ window.frameBox = function () {
 </section>
 
 <!-- 9 -->
-<section class="slide" data-n="9" data-steps="5">
+<section class="slide" data-n="9" data-steps="1">
+  <p class="kicker rise">Services</p>
+  <h2 class="title rise">Ways to explore the map</h2>
+  <div class="cards3 two">
+    <article class="card c-blue"><p class="q">A 3D picture</p><h3>Neuroglancer</h3><p>Open the map. Zoom, move, and look through the layers.</p></article>
+    <article class="card c-green" data-s="1"><p class="q">The connections</p><h3>neuPrint</h3><p>Search one neuron and see which neurons connect to it.</p></article>
+  </div>
+  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-n="10" data-steps="2">
+  <p class="kicker rise">Services</p>
+  <h2 class="title rise">Find a group, or compare the sexes</h2>
+  <div class="cards3">
+    <article class="card c-amber"><p class="q">Type and labels</p><h3>Explorer and Clio</h3><p>A directory of neurons. It does not say what they do.</p></article>
+    <article class="card c-pink" data-s="1"><p class="q">Male and female</p><h3>Dimorphism Explorer</h3><p>Pictures of the difference between the two maps.</p></article>
+    <article class="card c-green" data-s="2"><p class="q">Free to download</p><h3>The portal</h3><p>male-cns.janelia.org</p></article>
+  </div>
+  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button><button class="cite">Berg et al., 2026</button></footer>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-n="11" data-steps="5">
   <h2 class="title rise">Five parts, in the order a signal travels</h2>
   <ol class="parts">
     <li data-s="1" style="--c:var(--blue)"><b>1</b><div><h3>Compound eye</h3><p>receives light and images</p></div></li>
@@ -175,8 +183,19 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Berg et al., 2026</button><span>Shapes: MaleCNS v1.0</span></footer>
 </section>
 
-<!-- 10 -->
-<section class="slide" data-n="10" data-steps="2">
+<!-- 12 -->
+<section class="slide" data-n="12" data-steps="2">
+  <h2 class="title rise">2024 and 2026: two different animals</h2>
+  <div class="duo">
+    <div class="animal"><p class="lab violet">2024 · female</p><p class="num">139,255 <span>neurons</span></p><p class="line">Brain only. No nerve cord.</p></div>
+    <div class="animal" data-s="1"><p class="lab amber-t">2026 · male</p><p class="num">166,691 <span>neurons</span></p><p class="line">Brain + nerve cord, joined.</p></div>
+  </div>
+  <p class="strap" data-s="2"><b>Compare them.</b> Never glue them into one body.</p>
+  <footer class="src"><button class="cite">Dorkenwald et al., 2024</button><button class="cite">Berg et al., 2026</button></footer>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-n="13" data-steps="2">
   <h2 class="title rise">The neck joins the brain to the body</h2>
   <div class="col-r w620 vmid">
     <p class="say" data-only="0"><span class="pink-t">Map stops here:</span><br>which muscle?<br>Nobody knows.</p>
@@ -188,8 +207,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Berg et al., 2026</button><span>Line: one published neuron skeleton, drawn thicker</span></footer>
 </section>
 
-<!-- 11 -->
-<section class="slide" data-n="11" data-steps="1">
+<!-- 14 -->
+<section class="slide" data-n="14" data-steps="1">
   <div data-only="0" class="ginfo">
     <h2 class="title">Slap the Fly</h2>
     <p class="sub">These ten cells are what it runs. The three names are the three boxes on the right of the game.</p>
@@ -203,8 +222,8 @@ window.frameBox = function () {
   <div data-only="1" class="gamewrap"><iframe id="game" title="Slap the fly" data-src="demo/game.html"></iframe></div>
 </section>
 
-<!-- 12 -->
-<section class="slide" data-n="12" data-steps="2">
+<!-- 15 -->
+<section class="slide" data-n="15" data-steps="2">
   <h2 class="title rise">What beat the hand: ten cells</h2>
   <ol class="parts wide3" id="pathlist">
     <li style="--c:var(--blue)"><b>1</b><div><h3>LC4 × 8</h3><p>see a dark shape getting bigger</p><p class="syn"><u>67</u><u>65</u><u>63</u><u>63</u><u>62</u><u>61</u><u>59</u><u>58</u> <em>synapses ↓</em></p></div></li>
@@ -216,8 +235,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">MaleCNS v1.0 traced weights</button></footer>
 </section>
 
-<!-- 13 -->
-<section class="slide" data-n="13" data-steps="1">
+<!-- 16 -->
+<section class="slide" data-n="16" data-steps="1">
   <h2 class="title rise">Higher in the brain</h2>
   <div class="col-r w620 vmid">
     <div class="splitnums">
@@ -230,8 +249,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Berg et al., 2026</button><button class="cite">von Philipsborn et al., 2011</button></footer>
 </section>
 
-<!-- 14 -->
-<section class="slide" data-n="14" data-steps="2">
+<!-- 17 -->
+<section class="slide" data-n="17" data-steps="2">
   <h2 class="title rise">The first male–female comparison</h2>
   <div class="sexlay">
     <canvas id="sexdiff" width="1720" height="1200"></canvas>
@@ -286,8 +305,8 @@ window.frameBox = function () {
 </section>
 
 
-<!-- 15 -->
-<section class="slide" data-n="15" data-steps="1">
+<!-- 18 -->
+<section class="slide" data-n="18" data-steps="1">
   <p class="kicker rise">The IT story</p>
   <h2 class="title rise">A fly goes in. A map comes out.</h2>
   <div class="pipe" data-s="1">
@@ -299,8 +318,8 @@ window.frameBox = function () {
   </div>
 </section>
 
-<!-- 16 -->
-<section class="slide" data-n="16" data-steps="2">
+<!-- 19 -->
+<section class="slide" data-n="19" data-steps="2">
   <p class="kicker rise">Stage 1 of 4 · Input</p>
   <h2 class="title rise">The input device is a microscope</h2>
   <div class="stats">
@@ -313,8 +332,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Berg et al., 2026, Methods</button></footer>
 </section>
 
-<!-- 17 -->
-<section class="slide" data-n="17" data-steps="2">
+<!-- 20 -->
+<section class="slide" data-n="20" data-steps="2">
   <p class="kicker rise">Stage 2 of 4 · Processing</p>
   <h2 class="title rise">A network grows each neuron from one voxel</h2>
   <div class="row gap60 mt40">
@@ -329,8 +348,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Januszewski et al., 2018</button><button class="cite">Berg et al., 2026, Methods</button></footer>
 </section>
 
-<!-- 18 -->
-<section class="slide" data-n="18" data-steps="3">
+<!-- 21 -->
+<section class="slide" data-n="21" data-steps="3">
   <p class="kicker rise">Stage 2 of 4 · Checking the draft</p>
   <h2 class="title rise">Two kinds of mistake. Then humans.</h2>
   <div class="row gap40 mt40">
@@ -344,8 +363,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Berg et al., 2026, Methods</button></footer>
 </section>
 
-<!-- 19 -->
-<section class="slide" data-n="19" data-steps="0">
+<!-- 22 -->
+<section class="slide" data-n="22" data-steps="0">
   <p class="kicker rise">Stage 4 of 4 · Service</p>
   <h2 class="title-xl rise">Open it tonight</h2>
   <div class="row gap60 mt40 ac">
@@ -359,31 +378,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
 </section>
 
-<!-- 20 -->
-<section class="slide" data-n="20" data-steps="3">
-  <p class="kicker rise">Stage 4 of 4 · Service</p>
-  <h2 class="title rise">Three tools, three questions</h2>
-  <div class="cards3 tools">
-    <article class="card c-blue" data-s="1"><p class="q">Where do I get it?</p><h3>The portal</h3><p>male-cns.janelia.org<br>front door and download</p></article>
-    <article class="card c-amber" data-s="2"><p class="q">What does it look like?</p><h3>Neuroglancer</h3><p>the neurons in 3D</p></article>
-    <article class="card c-green" data-s="3"><p class="q">Who connects to whom?</p><h3>neuPrint</h3><p>dataset male-cns:v1.0<br>a public query service</p><p class="qa"><span>Giant fiber → TTMn?</span><b>70 synapses</b></p></article>
-  </div>
-  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
-</section>
-
-<!-- 21 -->
-<section class="slide" data-n="21" data-steps="1">
-  <p class="kicker rise">On the market</p>
-  <h2 class="title rise">Nothing to buy. The product is the data.</h2>
-  <div class="row gap40 mt50" data-s="1">
-    <div class="chip-xl amber grow"><b class="ccby">CC BY</b><span>use it · share it · build on it · give credit</span></div>
-    <div class="chip-xl grow"><b>Our class demo</b><span>our own window onto the data, not a Janelia product</span></div>
-  </div>
-  <footer class="src"><button class="cite">Janelia Research Campus, n.d.</button></footer>
-</section>
-
-<!-- 22 -->
-<section class="slide" data-n="22" data-steps="3">
+<!-- 23 -->
+<section class="slide" data-n="23" data-steps="3">
   <h2 class="title rise">How the map is advancing neuroscience</h2>
   <ol class="adv" data-s="1">
     <li class="st1" style="--c:var(--blue)"><b>1</b><div><h3>The whole road</h3><p>brain + nerve cord in one map: eye to leg</p></div></li>
@@ -395,8 +391,8 @@ window.frameBox = function () {
   <footer class="src"><button class="cite">Berg et al., 2026</button></footer>
 </section>
 
-<!-- 23 -->
-<section class="slide" data-n="23" data-steps="0">
+<!-- 24 -->
+<section class="slide" data-n="24" data-steps="0">
   <div class="col-l w760 vmid">
     <h2 class="thanks rise">Thank you</h2>
     <p class="kicker rise d1">Team P3-3 · IT 1020SEF · 17 November 2026</p>
@@ -404,8 +400,8 @@ window.frameBox = function () {
   </div>
 </section>
 
-<!-- 24 -->
-<section class="slide" data-n="24" data-steps="0">
+<!-- 25 -->
+<section class="slide" data-n="25" data-steps="0">
   <h2 class="title rise">References</h2>
   <ol class="refs rise d1" id="refs"></ol>
 </section>
