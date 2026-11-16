@@ -40,6 +40,12 @@ function render(from) {
   $("#pageno").textContent = `${n} / ${TOTAL}`;
   if (location.hash !== `#${n}.${step}`) history.replaceState(null, "", `#${n}.${step}`);
   window.Stage && window.Stage.go(n, step);
+  const film = $("#endfilm");
+  if (film) {
+    if (n === 26) { if (film.paused) film.play().catch(() => {}); }
+    else if (film.currentTime) { film.pause(); film.currentTime = 0; }
+  }
+  $("#pageno").hidden = n === 26;
   fx(from);
   prompt();
   send();
@@ -80,7 +86,7 @@ const evidence = $("#evidence");
 function openEvidence() {
   const items = EVIDENCE[n];
   $(".items", evidence).innerHTML = items ? items.map((e) => `<div class="ev"><p class="claim">${e.claim}</p>${e.quote ? `<blockquote>“${e.quote}”</blockquote>` : ""}${e.where ? `<p class="where">${e.where}</p>` : ""}${e.refs.map((r) => `<p class="apa">${REFS[r].apa}</p>`).join("")}</div>`).join("")
-    : `<div class="ev"><p class="claim">No outside source is needed on this slide.</p><p class="where">The full reference list is on slide ${TOTAL}.</p></div>`;
+    : `<div class="ev"><p class="claim">No outside source is needed on this slide.</p><p class="where">The full reference list is on slide ${slides.findIndex((s) => s.querySelector("#refs")) + 1}.</p></div>`;
   evidence.hidden = false;
 }
 document.addEventListener("click", (e) => {
