@@ -220,7 +220,7 @@ const VIEWS = {
     shells: { eye: { op: 0.1 }, brain: lit(C.ink, 0.28), neck: { op: 0.05 }, cord: { op: 0 } },
     neu: { lc4: N0(), gf: N0(), ttmn: N0(), pip10: s >= 1 ? on() : N0() },
     tags: s >= 1 ? [{ id: "pp", t: "pIP10", txt: 1, c: C.pink, at: "pip10", dx: 90, dy: -40 }] : [] }),
-  24: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2400, ox: 460, oy: 0 }, neu: allNeu }),
+  23: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2400, ox: 460, oy: 0 }, neu: allNeu }),
 };
 
 let ready = false, flipX = 1;

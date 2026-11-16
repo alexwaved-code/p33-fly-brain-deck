@@ -36,7 +36,7 @@ function render(from) {
   $$("[data-only]", sl).forEach((el) => el.classList.toggle("on", step === +el.dataset.only));
   const order = NOTES.speakers.map((s) => s.key), ci = order.indexOf(note.who);
   $$(".t", track).forEach((t, i) => { t.classList.toggle("done", i < ci); t.classList.toggle("cur", i === ci); });
-  track.classList.toggle("hide", n === 1 || n === 11 || n >= 24);
+  track.classList.toggle("hide", n === 1 || n === 11 || n >= 23);
   $("#pageno").textContent = `${n} / ${TOTAL}`;
   if (location.hash !== `#${n}.${step}`) history.replaceState(null, "", `#${n}.${step}`);
   window.Stage && window.Stage.go(n, step);
@@ -121,14 +121,14 @@ function countUp(el, to, ms = 1500) {
 }
 function counters(sl) {
   for (const el of $$("[data-count], [data-to]", sl)) {
-    const gate = el.closest("[data-s]"), vis = !gate || gate.classList.contains("on");
+    const gate = el.closest("[data-s], [data-only]"), vis = !gate || gate.classList.contains("on");
     if (vis && !el._vis) countUp(el, +(el.dataset.count || el.dataset.to), el.dataset.to ? 2200 : 1300);
     el._vis = vis;
   }
 }
 function replay() {
   if (n === 12 && step >= 1) window.Stage && window.Stage.signal();
-  else if (n === 18) flood(SEED);
+  else if (n === 17) flood(SEED);
   else if (n === 14) { sexT = performance.now(); sexStepT = step >= 1 ? performance.now() : 0; }
 }
 
@@ -424,9 +424,9 @@ function fx(from) {
     else pathItems.forEach((li) => { li.classList.add("lit"); li.classList.remove("hot"); });
   }
 
-  const fOn = n === 16 && step >= 1; if (fOn && !flowOn) { flowOn = true; flowLast = performance.now(); requestAnimationFrame(flowFrame); } else if (!fOn) { flowOn = false; fctx.clearRect(0, 0, flow.width, flow.height); }
+  const fOn = n === 15 && step >= 1; if (fOn && !flowOn) { flowOn = true; flowLast = performance.now(); requestAnimationFrame(flowFrame); } else if (!fOn) { flowOn = false; fctx.clearRect(0, 0, flow.width, flow.height); }
 
-  if (n === 18) { if (step === 0) clearFlood(); else if (step === 1 && (entered || from.step === 0)) flood(SEED); else if (entered) flood(SEED); }
+  if (n === 17) { if (step === 0) clearFlood(); else if (step === 1 && (entered || from.step === 0)) flood(SEED); else if (entered) flood(SEED); }
 }
 
 // ---------- self-guided view: Back and Next on screen, a tap on the slide, and a hand that shows where to tap ----------
