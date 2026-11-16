@@ -42,8 +42,6 @@
   const Q2 = "We provide the first comprehensive comparison between male and female brain connectomes to synaptic resolution, finding 7,205 isomorphic, 114 dimorphic, 262 male-specific and 69 female-specific types.";
   const Q3 = "This resource enables analysis of full sensory-to-motor circuits underlying complex behaviours and the impact of dimorphic elements.";
   const Q4 = "Sex-specific/dimorphic neurons are concentrated in higher brain centres while the sensory and motor periphery are largely isomorphic.";
-  const Q5 = "Within higher centres, male-specific connections are organised into hotspots defined by male-specific neurons or arbours. Numerous circuit switches reroute sensory information to form antagonistic circuits controlling opposing behaviours.";
-
   window.EVIDENCE = {
     6: [{ claim: "166,691 neurons, brain and nerve cord in one map", quote: Q1, where: ABS, refs: ["berg2026", "berg2025"] }],
     7: [{ claim: "Fully proofread, 11,691 types, fruitless and doublesex marked", quote: Q1, where: ABS, refs: ["berg2026", "berg2025"] },
@@ -54,8 +52,10 @@
     10: [{ claim: "The map spans the brain and the nerve cord, so a path can be followed through the neck", quote: Q1, where: ABS, refs: ["berg2026"] }],
     11: [{ claim: "7,205 shared types, 114 dimorphic, 262 male-specific, 69 female-specific", quote: Q2, where: ABS, refs: ["berg2026", "berg2025"] }],
     13: [{ claim: "LC4 to giant fiber: 67, 65, 63, 63, 62, 61, 59, 58 synapses. Giant fiber to TTMn: 70. Acetylcholine.", where: "MaleCNS v1.0 traced weights, read from the public data set", refs: ["janelia", "berg2026"] }],
-    14: [{ claim: "The difference sits in higher brain centres", quote: Q4, where: ABS, refs: ["berg2026"] },
-         { claim: "Driving pIP10 makes the male vibrate one wing in short pulses, his courtship song", refs: ["vonp2011"] }],
+    14: [{ claim: "Sex-specific cells sit in higher centres. Sensory and motor cells are largely the same in both sexes.", quote: Q4, where: ABS, refs: ["berg2026"] },
+         { claim: "First comparison at synaptic resolution: 7,205 the same, 114 different partners, 262 male-only, 69 female-only", quote: Q2, where: ABS, refs: ["berg2026", "berg2025"] },
+         { claim: "fruitless and doublesex are marked on the cells", quote: Q1, where: ABS, refs: ["berg2026"] },
+         { claim: "2024: a female brain, 139,255 neurons, no nerve cord", refs: ["dorkenwald2024"] }],
     17: [{ claim: "Seven electron microscopes, 13 months, 8 nm voxels, about 0.082 mm³, about 160 teravoxels", where: "Methods", refs: ["berg2026"] }],
     18: [{ claim: "Flood-filling networks grow a neuron outward from a seed", refs: ["januszewski2018"] },
          { claim: "About 46 million sending sites and 312 million receiving sites; precision about 0.82, recall about 0.81", where: "Methods", refs: ["berg2026"] }],

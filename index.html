@@ -231,19 +231,31 @@ window.frameBox = function () {
 </section>
 
 <!-- 14 -->
-<section class="slide" data-n="14" data-steps="2">
-  <h2 class="title rise">Male and female: mostly the same wiring</h2>
-  <p class="sub rise d1">The first full comparison of a male and a female brain, synapse by synapse. One square = one cell type.</p>
-  <div class="row gap50 mt30">
-    <canvas id="dots" width="1640" height="1000"></canvas>
-    <div class="tally">
-      <div data-s="1" style="--c:var(--blue)"><b data-count="7205">7,205</b><span>the same in both sexes</span></div>
-      <div data-s="2" style="--c:var(--amber)"><b data-count="114">114</b><span>in both sexes, different partners</span></div>
-      <div data-s="2" style="--c:var(--pink)"><b data-count="262">262</b><span>male only</span></div>
-      <div data-s="2" style="--c:var(--violet)"><b data-count="69">69</b><span>female only</span></div>
+<section class="slide" data-n="14" data-steps="1">
+  <h2 class="title rise">Why the sex difference matters</h2>
+  <div class="sexlay">
+    <canvas id="sexdiff" width="1720" height="1200"></canvas>
+    <div class="sexside">
+      <div data-only="0">
+        <p class="lab">In neuroscience</p>
+        <div class="sexpt st1" style="--c:var(--pink)"><b>A missing circuit</b><span>Map one sex, and the other sex's cells are gone.</span></div>
+        <div class="sexpt st2" style="--c:var(--blue)"><b>A shared road</b><span>The jump is wired in both.</span></div>
+        <div class="sexpt st3" style="--c:var(--amber)"><b>A different job</b><span>Same cell, different partners.</span></div>
+      </div>
+      <div data-only="1">
+        <p class="lab">Why this map</p>
+        <p class="sexlead">First comparison, synapse by synapse.</p>
+        <div class="sextally">
+          <div style="--c:var(--blue)"><b data-count="7205">7,205</b><span>the same in both</span></div>
+          <div style="--c:var(--amber)"><b data-count="114">114</b><span>different partners</span></div>
+          <div style="--c:var(--pink)"><b data-count="262">262</b><span>male only</span></div>
+          <div style="--c:var(--violet)"><b data-count="69">69</b><span>female only</span></div>
+        </div>
+        <p class="tiny">fruitless and doublesex are marked on the cells. The 2024 map was a female brain only, with no nerve cord.</p>
+      </div>
     </div>
   </div>
-  <footer class="src"><button class="cite">Berg et al., 2026</button></footer>
+  <footer class="src"><button class="cite">Berg et al., 2026</button><button class="cite">Dorkenwald et al., 2024</button></footer>
 </section>
 
 <!-- 15 -->

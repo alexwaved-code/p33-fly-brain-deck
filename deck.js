@@ -129,7 +129,7 @@ function counters(sl) {
 function replay() {
   if (n === 12 && step >= 1) window.Stage && window.Stage.signal();
   else if (n === 18) flood(SEED);
-  else if (n === 14) { dotT = performance.now(); }
+  else if (n === 14) { sexT = performance.now(); sexStepT = step >= 1 ? performance.now() : 0; }
 }
 
 // --- slide 2: a fly that will not be caught ---
@@ -161,28 +161,164 @@ function bugFrame(now) {
   requestAnimationFrame(bugFrame);
 }
 
-// --- slide 11: one square per cell type ---
-const dots = $("#dots"), dctx = dots.getContext("2d");
-const COLS = 112, CELL = 14.4, NTYPES = 7205 + 114 + 262 + 69;
-let dotT = 0, dotOn = false;
-function dotFrame(now) {
-  if (!dotOn) return;
-  const cBlue = css("--blue"), cs = [css("--amber"), css("--pink"), css("--violet")], grey = "#dcd7ca";
-  dctx.clearRect(0, 0, dots.width, dots.height);
-  const t = (now - dotT) / 1000, rows = Math.ceil(NTYPES / COLS);
-  for (let i = 0; i < NTYPES; i++) {
-    const c = i % COLS, r = (i / COLS) | 0, x = 14 + c * CELL, y = 6 + r * CELL;
-    let col = grey, s = 1;
-    if (i < 7205) { if (step >= 1) { const u = step > 1 ? 1 : t * 1.5 - (c / COLS) * 0.7 - (r / rows) * 0.7; if (u > 0) { col = cBlue; s = u < 0.25 ? 1 + (0.25 - u) * 1.6 : 1; } } }
-    else if (step >= 2) {
-      const j = i - 7205, u = t * 1.4 - (j / 445) * 1.2;
-      if (u > 0) { col = j < 114 ? cs[0] : j < 376 ? cs[1] : cs[2]; s = u < 0.3 ? 1 + (0.3 - u) * 2.4 : 1; }
-    }
-    dctx.fillStyle = col; dctx.globalAlpha = col === cBlue && step >= 2 ? 0.55 : 1;
-    const w = (CELL - 3.4) * s; dctx.fillRect(x + (CELL - w) / 2, y + (CELL - w) / 2, w, w);
+// --- slide 14: two roads, then the cells only one sex has ---
+const sex = $("#sexdiff"), sctx = sex.getContext("2d");
+let sexOn = false, sexT = 0, sexStepT = 0;
+const sxEase = (u) => { u = Math.max(0, Math.min(1, u)); return 1 - Math.pow(1 - u, 3); };
+const sxIn = (t, t0, dur) => sxEase((t - t0) / dur);
+function sexBlob(x, y, r, color, a) {
+  if (a <= 0.01) return;
+  sctx.save();
+  sctx.globalAlpha = Math.min(1, a);
+  sctx.fillStyle = color;
+  sctx.shadowColor = color;
+  sctx.shadowBlur = 22;
+  sctx.beginPath();
+  sctx.arc(x, y, r, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.shadowBlur = 0;
+  sctx.fillStyle = "rgba(255,255,255,.9)";
+  sctx.beginPath();
+  sctx.arc(x - r * 0.28, y - r * 0.32, r * 0.22, 0, Math.PI * 2);
+  sctx.fill();
+  sctx.restore();
+}
+function sexLink(x1, y1, x2, y2, color, a) {
+  if (a <= 0.01) return;
+  sctx.save();
+  sctx.globalAlpha = Math.min(1, a) * 0.9;
+  sctx.strokeStyle = color;
+  sctx.lineWidth = 8;
+  sctx.lineCap = "round";
+  sctx.beginPath();
+  sctx.moveTo(x1, y1);
+  const my = (y1 + y2) / 2;
+  sctx.bezierCurveTo(x1, my, x2, my, x2, y2);
+  sctx.stroke();
+  sctx.restore();
+}
+function sexText(text, x, y, color, a, align) {
+  if (a <= 0.01) return;
+  sctx.save();
+  sctx.globalAlpha = Math.min(1, a);
+  sctx.fillStyle = color;
+  sctx.font = "600 40px Avenir Next, Segoe UI, sans-serif";
+  sctx.textAlign = align;
+  sctx.textBaseline = "middle";
+  sctx.fillText(text, x, y);
+  sctx.restore();
+}
+function sexFrame(now) {
+  if (!sexOn) return;
+  const t = (now - sexT) / 1000;
+  const W = sex.width, H = sex.height;
+  const blue = css("--blue"), pink = css("--pink"), amber = css("--amber"), violet = css("--violet");
+  const age = sexStepT ? (now - sexStepT) / 1000 : -1;
+  const dim = (i) => {
+    if (age < 0 || age > 2.5) return 1;
+    const u = age - i * 0.48;
+    if (u < 0) return 0.16;
+    if (u < 0.48) return 1;
+    return 0.42;
+  };
+  sctx.clearRect(0, 0, W, H);
+  sctx.fillStyle = "#fff";
+  sctx.fillRect(0, 0, W, H);
+  const cols = [{ x: 430, name: "Male" }, { x: 1290, name: "Female" }];
+  const ys = [250, 460, 670, 880];
+  for (const col of cols) {
+    const a = sxIn(t, 0.05, 0.45);
+    sctx.save();
+    sctx.globalAlpha = a;
+    sctx.fillStyle = "#f6f4ee";
+    sctx.beginPath();
+    sctx.roundRect(col.x - 180, 150, 360, 800, 180);
+    sctx.fill();
+    sctx.fillStyle = "#16150f";
+    sctx.font = "600 76px Iowan Old Style, Palatino, Georgia, serif";
+    sctx.textAlign = "center";
+    sctx.textBaseline = "alphabetic";
+    sctx.fillText(col.name, col.x, 118);
+    sctx.restore();
   }
-  dctx.globalAlpha = 1;
-  requestAnimationFrame(dotFrame);
+  const chain = dim(0);
+  for (const col of cols) {
+    const grow = sxIn(t, 0.15, 0.85);
+    sctx.save();
+    sctx.globalAlpha = grow * chain;
+    sctx.strokeStyle = blue;
+    sctx.lineWidth = 12;
+    sctx.lineCap = "round";
+    sctx.beginPath();
+    sctx.moveTo(col.x, ys[0]);
+    sctx.lineTo(col.x, ys[0] + (ys[3] - ys[0]) * grow);
+    sctx.stroke();
+    sctx.restore();
+    ys.forEach((y, i) => sexBlob(col.x, y, 30, blue, sxIn(t, 0.2 + i * 0.16, 0.35) * chain));
+    if (t > 1.05) {
+      const u = ((t - 1.05) % 2.1) / 2.1;
+      const y = ys[0] + (ys[3] - ys[0]) * u;
+      const edge = Math.sin(Math.min(1, u * 6) * Math.PI) * Math.sin(Math.min(1, (1 - u) * 6) * Math.PI);
+      sctx.save();
+      sctx.globalAlpha = edge * chain;
+      sctx.fillStyle = "#fff";
+      sctx.beginPath();
+      sctx.arc(col.x, y, 10, 0, Math.PI * 2);
+      sctx.fill();
+      sctx.restore();
+    }
+  }
+  const pa = sxIn(t, 1.45, 0.4) * dim(2);
+  if (pa > 0) {
+    const x = 200, y = 460;
+    const flap = Math.sin(t * 14);
+    sctx.save();
+    sctx.translate(x, y);
+    sctx.rotate(Math.PI - 0.25 + flap * 0.5);
+    sctx.globalAlpha = pa * 0.9;
+    sctx.fillStyle = pink;
+    sctx.beginPath();
+    sctx.ellipse(72, -4, 64, 15, 0, 0, Math.PI * 2);
+    sctx.fill();
+    sctx.restore();
+    sexLink(430, 460, x, y, pink, pa);
+    sexBlob(x, y, 28, pink, pa);
+  }
+  const fa = sxIn(t, 1.95, 0.4) * dim(3);
+  if (fa > 0) {
+    const x = 1520, y = 460;
+    sexLink(1290, 460, x, y, violet, fa);
+    sexBlob(x, y, 26, violet, fa);
+  }
+  const aa = sxIn(t, 2.45, 0.45) * dim(1);
+  if (aa > 0) {
+    sexLink(430, 670, 250, 860, amber, aa);
+    sexBlob(250, 860, 24, amber, aa);
+    sexLink(1290, 670, 1470, 860, amber, aa);
+    sexBlob(1470, 860, 24, amber, aa);
+  }
+  const key = [
+    ["Same road", blue, sxIn(t, 0.7, 0.35) * chain, 120],
+    ["Partners", amber, aa, 520],
+    ["Male only", pink, pa, 900],
+    ["Female only", violet, fa, 1320],
+  ];
+  for (const [name, color, a, x] of key) {
+    if (a <= 0.01) continue;
+    sctx.save();
+    sctx.globalAlpha = Math.min(1, a);
+    sctx.fillStyle = color;
+    sctx.beginPath();
+    sctx.arc(x, 1120, 12, 0, Math.PI * 2);
+    sctx.fill();
+    sctx.fillStyle = "#57544c";
+    sctx.font = "600 42px Avenir Next, Segoe UI, sans-serif";
+    sctx.textAlign = "left";
+    sctx.textBaseline = "middle";
+    sctx.fillText(name, x + 24, 1120);
+    sctx.restore();
+  }
+  requestAnimationFrame(sexFrame);
 }
 
 // --- slide 12: the signal builds, then the game ---
@@ -273,8 +409,11 @@ function fx(from) {
 
   const bugOn = n === 2; if (bugOn && !B.on) { B.on = true; bugLast = performance.now(); bugTarget(); requestAnimationFrame(bugFrame); } else if (!bugOn) B.on = false;
 
-  const dOn = n === 14; if (dOn && (entered || from.step !== step)) dotT = performance.now();
-  if (dOn && !dotOn) { dotOn = true; requestAnimationFrame(dotFrame); } else if (!dOn) dotOn = false;
+  const sOn = n === 14;
+  if (sOn && entered) sexT = performance.now();
+  if (sOn && step >= 1 && (entered || from.step < 1)) sexStepT = performance.now();
+  if (sOn && step === 0) sexStepT = 0;
+  if (sOn && !sexOn) { sexOn = true; requestAnimationFrame(sexFrame); } else if (!sOn) sexOn = false;
 
   if (n === 10 || n === 11) loadGame();
   if (n === 11 && step === 1) setTimeout(() => game.focus(), 300);
