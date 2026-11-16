@@ -36,7 +36,7 @@ function render(from) {
   $$("[data-only]", sl).forEach((el) => el.classList.toggle("on", step === +el.dataset.only));
   const order = NOTES.speakers.map((s) => s.key), ci = order.indexOf(note.who);
   $$(".t", track).forEach((t, i) => { t.classList.toggle("done", i < ci); t.classList.toggle("cur", i === ci); });
-  track.classList.toggle("hide", n === 1 || n === 14 || n >= 24);
+  track.classList.toggle("hide", n === 1 || n === 12 || n >= 24);
   $("#pageno").textContent = `${n} / ${TOTAL}`;
   if (location.hash !== `#${n}.${step}`) history.replaceState(null, "", `#${n}.${step}`);
   window.Stage && window.Stage.go(n, step);
@@ -127,9 +127,9 @@ function counters(sl) {
   }
 }
 function replay() {
-  if (n === 15 && step >= 1) window.Stage && window.Stage.signal();
-  else if (n === 20) flood(SEED);
-  else if (n === 17) { sexT = performance.now(); sexStepT = step >= 1 ? performance.now() : 0; }
+  if (n === 13 && step >= 1) window.Stage && window.Stage.signal();
+  else if (n === 18) flood(SEED);
+  else if (n === 15) { sexT = performance.now(); sexStepT = step >= 1 ? performance.now() : 0; }
 }
 
 // --- slide 2: a fly that will not be caught ---
@@ -409,24 +409,24 @@ function fx(from) {
 
   const bugOn = n === 2; if (bugOn && !B.on) { B.on = true; bugLast = performance.now(); bugTarget(); requestAnimationFrame(bugFrame); } else if (!bugOn) B.on = false;
 
-  const sOn = n === 17;
+  const sOn = n === 15;
   if (sOn && entered) sexT = performance.now();
   if (sOn && step >= 1 && (entered || from.step < 1)) sexStepT = performance.now();
   if (sOn && step === 0) sexStepT = 0;
   if (sOn && !sexOn) { sexOn = true; requestAnimationFrame(sexFrame); } else if (!sOn) sexOn = false;
 
-  if (n === 13 || n === 14) loadGame();
-  if (n === 14 && step === 1) setTimeout(() => game.focus(), 300);
+  if (n === 11 || n === 12) loadGame();
+  if (n === 12 && step === 1) setTimeout(() => game.focus(), 300);
 
-  if (n === 15) {
+  if (n === 13) {
     if (step === 0) pathItems.forEach((li) => li.classList.remove("lit", "hot"));
-    else if (step === 1 && (entered || from.step === 0)) setTimeout(() => n === 15 && step === 1 && window.Stage && window.Stage.signal(), entered ? 900 : 150);
+    else if (step === 1 && (entered || from.step === 0)) setTimeout(() => n === 13 && step === 1 && window.Stage && window.Stage.signal(), entered ? 900 : 150);
     else pathItems.forEach((li) => { li.classList.add("lit"); li.classList.remove("hot"); });
   }
 
-  const fOn = n === 18 && step >= 1; if (fOn && !flowOn) { flowOn = true; flowLast = performance.now(); requestAnimationFrame(flowFrame); } else if (!fOn) { flowOn = false; fctx.clearRect(0, 0, flow.width, flow.height); }
+  const fOn = n === 16 && step >= 1; if (fOn && !flowOn) { flowOn = true; flowLast = performance.now(); requestAnimationFrame(flowFrame); } else if (!fOn) { flowOn = false; fctx.clearRect(0, 0, flow.width, flow.height); }
 
-  if (n === 20) { if (step === 0) clearFlood(); else if (step === 1 && (entered || from.step === 0)) flood(SEED); else if (entered) flood(SEED); }
+  if (n === 18) { if (step === 0) clearFlood(); else if (step === 1 && (entered || from.step === 0)) flood(SEED); else if (entered) flood(SEED); }
 }
 
 // ---------- self-guided view: Back and Next on screen, a tap on the slide, and a hand that shows where to tap ----------
