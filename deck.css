@@ -282,8 +282,8 @@ a { color: inherit; }
 .mini b { font-size: 30px; white-space: nowrap; } .slide[data-n="18"] .line { font-size: 29px; }
 .slide[data-n="25"] { padding-top: 84px; } .slide[data-n="25"] .title { font-size: 52px; }
 .refs { margin-top: 22px; gap: 15px; } .refs li { font-size: 23px; line-height: 1.36; } .refs a { word-break: normal; white-space: nowrap; }
-.slide[data-n="14"] .col-r { top: 210px; }
-.slide[data-n="13"] .parts.wide3 { top: 182px; gap: 12px; } .slide[data-n="13"] .parts.wide3 li { padding: 10px 22px; } .slide[data-n="13"] .col-r.below { bottom: 50px; }
+.slide[data-n="13"] .col-r { top: 210px; }
+.slide[data-n="12"] .parts.wide3 { top: 182px; gap: 12px; } .slide[data-n="12"] .parts.wide3 li { padding: 10px 22px; } .slide[data-n="12"] .col-r.below { bottom: 50px; }
 .chip-xl.next { margin-top: 26px; padding: 16px 30px; } .chip-xl.rowchip.next b { font-size: 33px; }
 .slide[data-n="23"] .adv { margin-top: 22px; gap: 10px; } .slide[data-n="23"] .adv li > b { font-size: 84px; } .slide[data-n="23"] .adv h3 { font-size: 44px; } .slide[data-n="23"] .adv p { font-size: 31px; }
 .slide[data-n="23"] .punch.small { margin-top: 22px; padding: 20px 40px; }
@@ -314,18 +314,15 @@ html.view #viewbar { display: flex; position: fixed; left: 0; right: 0; bottom: 
 .relay li { --c: var(--ink); position: relative; width: 300px; text-align: left; padding: 20px 26px; border-radius: 22px; background: var(--paper); border: 3px solid var(--c); }
 .relay li + li::before { content: "→"; position: absolute; left: -41px; top: 50%; transform: translateY(-50%); font: 600 34px var(--sans); color: var(--faint); }
 .relay b { display: block; font: 700 32px var(--sans); color: var(--c); } .relay span { display: block; font-size: 25px; line-height: 1.3; color: var(--soft); margin-top: 6px; }
-.slide[data-n="12"][data-step="5"] .explain { opacity: 0; }
-.slide[data-n="12"] .parts { width: 660px; top: 196px; }
-.slide[data-n="12"] .kicker { margin-top: 8px; }
 
 .vs h2.plain { font-size: 132px; letter-spacing: -.02em; }
 .splitnums { display: grid; gap: 8px; }
 .splitnums div { display: flex; align-items: baseline; gap: 18px; }
 .splitnums b { font: 500 72px/1 var(--serif); color: var(--c); min-width: 150px; font-variant-numeric: tabular-nums; }
 .splitnums span { font-size: 28px; color: var(--soft); }
-.slide[data-n="14"] .title { max-width: 700px; }
+.slide[data-n="13"] .title { max-width: 700px; }
 
-.slide[data-n="14"] .col-r { top: 168px; bottom: auto; padding: 26px 30px 30px; border-radius: 28px; background: rgba(246,244,238,.94); box-shadow: 0 24px 60px -30px rgba(40,30,10,.35); }
+.slide[data-n="13"] .col-r { top: 168px; bottom: auto; padding: 26px 30px 30px; border-radius: 28px; background: rgba(246,244,238,.94); box-shadow: 0 24px 60px -30px rgba(40,30,10,.35); }
 
 .ginfo { inset: 0; padding: 118px 96px 60px; }
 .gnums { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; }

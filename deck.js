@@ -36,7 +36,7 @@ function render(from) {
   $$("[data-only]", sl).forEach((el) => el.classList.toggle("on", step === +el.dataset.only));
   const order = NOTES.speakers.map((s) => s.key), ci = order.indexOf(note.who);
   $$(".t", track).forEach((t, i) => { t.classList.toggle("done", i < ci); t.classList.toggle("cur", i === ci); });
-  track.classList.toggle("hide", n === 1 || n === 12 || n >= 24);
+  track.classList.toggle("hide", n === 1 || n === 11 || n >= 24);
   $("#pageno").textContent = `${n} / ${TOTAL}`;
   if (location.hash !== `#${n}.${step}`) history.replaceState(null, "", `#${n}.${step}`);
   window.Stage && window.Stage.go(n, step);
@@ -127,9 +127,9 @@ function counters(sl) {
   }
 }
 function replay() {
-  if (n === 13 && step >= 1) window.Stage && window.Stage.signal();
+  if (n === 12 && step >= 1) window.Stage && window.Stage.signal();
   else if (n === 18) flood(SEED);
-  else if (n === 11) { dotT = performance.now(); }
+  else if (n === 14) { dotT = performance.now(); }
 }
 
 // --- slide 2: a fly that will not be caught ---
@@ -273,15 +273,15 @@ function fx(from) {
 
   const bugOn = n === 2; if (bugOn && !B.on) { B.on = true; bugLast = performance.now(); bugTarget(); requestAnimationFrame(bugFrame); } else if (!bugOn) B.on = false;
 
-  const dOn = n === 11; if (dOn && (entered || from.step !== step)) dotT = performance.now();
+  const dOn = n === 14; if (dOn && (entered || from.step !== step)) dotT = performance.now();
   if (dOn && !dotOn) { dotOn = true; requestAnimationFrame(dotFrame); } else if (!dOn) dotOn = false;
 
-  if (n === 11 || n === 12) loadGame();
-  if (n === 12 && step === 1) setTimeout(() => game.focus(), 300);
+  if (n === 10 || n === 11) loadGame();
+  if (n === 11 && step === 1) setTimeout(() => game.focus(), 300);
 
-  if (n === 13) {
+  if (n === 12) {
     if (step === 0) pathItems.forEach((li) => li.classList.remove("lit", "hot"));
-    else if (step === 1 && (entered || from.step === 0)) setTimeout(() => n === 13 && step === 1 && window.Stage && window.Stage.signal(), entered ? 900 : 150);
+    else if (step === 1 && (entered || from.step === 0)) setTimeout(() => n === 12 && step === 1 && window.Stage && window.Stage.signal(), entered ? 900 : 150);
     else pathItems.forEach((li) => { li.classList.add("lit"); li.classList.remove("hot"); });
   }
 
