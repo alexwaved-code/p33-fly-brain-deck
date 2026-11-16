@@ -258,7 +258,7 @@ const VIEWS = {
   }),
   6: (s) => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2600, ox: 480, oy: -40 }, neu: allNeu,
     shells: s >= 2 ? { eye: lit(C.amber, 0.7), brain: lit(C.amber, 0.7), neck: lit(C.ink, 0.8), cord: lit(C.violet, 0.7) } : {} }),
-  8: (s) => ({ vis: 1, femaleVis: 1, maleVis: s >= 1 ? 1 : 0, maleX: 640, cam: { a: 0.22, yaw: 0, r: 3300, ox: 0, oy: -95, at: "origin" },
+  8: (s) => ({ vis: 1, femaleVis: s >= 1 ? 1 : 0, maleVis: s >= 1 ? 1 : 0, maleX: 640, cam: { a: 0.22, yaw: 0, r: 3300, ox: 0, oy: -95, at: "origin" },
     shells: { eye: lit(C.amber, 0.75), brain: lit(C.amber, 0.75), neck: lit(C.amber, 0.75), cord: lit(C.amber, 0.75) } }),
   9: (s) => {
     const sh = {}, tags = [];
@@ -284,7 +284,8 @@ const VIEWS = {
     tags: s >= 1 ? [{ id: "pp", t: "pIP10", txt: 1, c: C.pink, at: "pip10", dx: 90, dy: -40 }] : [] }),
   24: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2400, ox: 460, oy: 0 }, neu: allNeu }),
 };
-VIEWS[10] = VIEWS[8];
+VIEWS[10] = (s) => ({ vis: 1, femaleVis: 1, maleVis: s >= 1 ? 1 : 0, maleX: 640, cam: { a: 0.22, yaw: 0, r: 3300, ox: 0, oy: -95, at: "origin" },
+  shells: { eye: lit(C.amber, 0.75), brain: lit(C.amber, 0.75), neck: lit(C.amber, 0.75), cord: lit(C.amber, 0.75) } });
 
 let ready = false, flipX = 1;
 let tgt = base(), cur = base();
