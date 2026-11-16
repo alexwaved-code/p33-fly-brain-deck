@@ -26,6 +26,48 @@ function shellMaterial(hex) {
         gl_FragColor = vec4(c, a); }`,
   });
 }
+function brainGlass(hex) {
+  return new THREE.ShaderMaterial({
+    transparent: true, depthWrite: true, side: THREE.FrontSide,
+    uniforms: { color: { value: new THREE.Color(hex) }, opacity: { value: 0 }, lightDir: { value: lightDir } },
+    vertexShader: `attribute float crease; varying float vC; varying vec3 vN; varying vec3 vV;
+      void main(){ vC = crease; vec4 p = modelViewMatrix * vec4(position,1.0); vN = normalize(normalMatrix * normal); vV = normalize(-p.xyz); gl_Position = projectionMatrix * p; }`,
+    fragmentShader: `uniform vec3 color; uniform float opacity; uniform vec3 lightDir; varying float vC; varying vec3 vN; varying vec3 vV;
+      void main(){ if (opacity < 0.02) discard;
+        vec3 n = normalize(vN); float ndv = clamp(dot(n, normalize(vV)), 0.0, 1.0);
+        float rim = pow(1.0 - ndv, 1.7); float lam = 0.36 + 0.78 * max(dot(n, lightDir), 0.0);
+        float groove = smoothstep(0.015, -0.055, vC);
+        vec3 c = mix(color, color * 0.38, groove) * lam + rim * vec3(0.85, 0.92, 1.0);
+        gl_FragColor = vec4(c, opacity * (0.26 + 0.58 * rim + groove * 0.15)); }`,
+  });
+}
+function foldedSphere(w, h, shape) {
+  const geo = new THREE.SphereGeometry(1, w, h);
+  const pos = geo.attributes.position, crease = new Float32Array(pos.count), v = new THREE.Vector3();
+  for (let i = 0; i < pos.count; i++) {
+    v.fromBufferAttribute(pos, i).normalize();
+    const o = shape(v); pos.setXYZ(i, o.x, o.y, o.z); crease[i] = o.c;
+  }
+  geo.setAttribute("crease", new THREE.Float32BufferAttribute(crease, 1));
+  geo.computeVertexNormals();
+  return geo;
+}
+function cerebrumShape(v) {
+  const fold = 0.075 * Math.sin(v.y * 11 + Math.sin(v.z * 3.4) * 1.7) * Math.cos(v.z * 7 + v.x)
+    + 0.038 * Math.sin(v.x * 15 + v.y * 5) + 0.02 * Math.cos(v.y * 22 + v.z * 8);
+  const fiss = Math.exp(-(v.x * v.x) / 0.007) * Math.max(0, v.y + 0.28);
+  let x = v.x * (1.08 + fold) + Math.sign(v.x || 1) * 0.04;
+  let y = v.y * (0.78 + fold * 0.35) - fiss * 0.2;
+  let z = v.z * (1.18 + fold * 0.25);
+  if (v.z > 0.12) y -= 0.07 * (v.z - 0.12);
+  if (v.y < 0.08 && Math.abs(v.x) > 0.28) y -= 0.1 * (0.2 - v.y);
+  if (v.z < -0.4) { x *= 0.9; y += 0.03; }
+  return { x, y, z, c: fold - fiss * 0.22 };
+}
+function cerebellumShape(v) {
+  const folia = Math.sin((v.y + 0.2) * 30) * 0.07;
+  return { x: v.x * (1 + folia), y: v.y * (0.62 + folia), z: v.z * (0.78 + folia), c: folia };
+}
 function neuronMaterial(hex) {
   return new THREE.ShaderMaterial({
     transparent: true,
@@ -114,6 +156,21 @@ const male = new THREE.Group(); world.add(male);            // carries maleX
 const root = new THREE.Group(); male.add(root); root.rotation.y = Math.PI / 2;
 const cordGroup = new THREE.Group(); root.add(cordGroup);
 const female = new THREE.Group(); world.add(female); female.visible = false;
+const human = new THREE.Group(); world.add(human); human.visible = false; human.position.y = -72;
+const humanOrient = new THREE.Group(); humanOrient.rotation.x = -Math.PI / 2; human.add(humanOrient);
+const humanSpin = new THREE.Group(); humanOrient.add(humanSpin);
+const humanMats = [];
+function buildHumanBrain() {
+  const mat = brainGlass("#d7e2ec"); humanMats.push(mat);
+  humanSpin.add(new THREE.Mesh(foldedSphere(128, 96, cerebrumShape), mat));
+  const bell = new THREE.Mesh(foldedSphere(72, 48, cerebellumShape), mat);
+  bell.position.set(0, -0.5, -0.74); bell.scale.setScalar(0.44); humanSpin.add(bell);
+  const stemGeo = new THREE.CylinderGeometry(0.085, 0.04, 0.46, 24, 1, true);
+  stemGeo.setAttribute("crease", new THREE.Float32BufferAttribute(new Float32Array(stemGeo.attributes.position.count), 1));
+  const stem = new THREE.Mesh(stemGeo, mat); stem.position.set(0, -0.7, -0.2); stem.rotation.x = 0.6; humanSpin.add(stem);
+  humanSpin.scale.setScalar(275);
+}
+buildHumanBrain();
 const shell = {};   // key -> [materials]
 const neuron = {};  // id -> material
 const anchors = {}; // name -> {v: Vector3 (root local), cord: bool}
@@ -178,7 +235,7 @@ function buildFemale() {
 const N0 = () => ({ shown: 0, front: 1, alpha: 1 });
 function base() {
   return {
-    vis: 0, spin: 0, cut: 0, maleX: 0, maleVis: 1, femaleVis: 0, femaleX: -640,
+    vis: 0, spin: 0, cut: 0, maleX: 0, maleY: 0, maleZ: 0, maleYaw: 0, maleVis: 1, femaleVis: 0, femaleX: -640, humanVis: 0, humanX: 0,
     cam: { a: 0.22, yaw: 0, r: 1950, ox: 0, oy: 0, at: "center" },
     shells: { eye: { c: C.shell, op: 0.55, solid: 0 }, brain: { c: C.shell, op: 0.55, solid: 0 }, neck: { c: C.shell, op: 0.55, solid: 0 }, cord: { c: C.shell, op: 0.55, solid: 0 } },
     neu: { lc4: N0(), gf: N0(), pip10: N0(), ttmn: N0() },
@@ -194,6 +251,11 @@ const LEFT = { a: 0.22, yaw: 0, r: 1980, ox: -278, oy: 46, at: "center" };
 
 const VIEWS = {
   1: () => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2500, ox: 470, oy: -20 }, neu: allNeu, shells: { eye: { op: 0.6 }, brain: { op: 0.6 }, neck: { op: 0.6 }, cord: { op: 0.6 } } }),
+  5: (s) => ({
+    vis: 1, humanVis: 1, humanX: -500, maleVis: s >= 1 ? 1 : 0, maleX: 520, maleZ: -331, maleYaw: Math.PI / 2,
+    cam: { a: 0.52, yaw: 0.34, r: 2280, ox: 0, oy: -108, at: "origin" },
+    shells: { eye: lit(C.amber, 0.95), brain: { c: "#e0a04a", op: 0.9, solid: 0.5 }, neck: { op: 0 }, cord: { op: 0 } },
+  }),
   6: (s) => ({ vis: 1, spin: 0.22, cam: { a: 0.6, yaw: 0.3, r: 2600, ox: 480, oy: -40 }, neu: allNeu,
     shells: s >= 2 ? { eye: lit(C.amber, 0.7), brain: lit(C.amber, 0.7), neck: lit(C.ink, 0.8), cord: lit(C.violet, 0.7) } : {} }),
   8: (s) => ({ vis: 1, femaleVis: 1, maleVis: s >= 1 ? 1 : 0, maleX: 640, cam: { a: 0.22, yaw: 0, r: 3300, ox: 0, oy: -95, at: "origin" },
@@ -233,6 +295,7 @@ function go(n, step) {
   const v = VIEWS[n];
   tgt = mix(base(), v ? v(step) : {});
   if (!v) { tgt.cam = { ...cur.cam }; tgt.shells = JSON.parse(JSON.stringify(cur.shells)); tgt.neu = JSON.parse(JSON.stringify(cur.neu)); tgt.maleX = cur.maleX; tgt.spin = cur.spin; tgt.femaleVis = cur.femaleVis; tgt.maleVis = cur.maleVis; }
+  if (cur.vis < 0.04) { cur.maleVis = tgt.maleVis; cur.maleX = tgt.maleX; cur.maleZ = tgt.maleZ; cur.maleYaw = tgt.maleYaw; cur.humanVis = tgt.humanVis; cur.humanX = tgt.humanX; cur.femaleVis = tgt.femaleVis; }
   userA = userYaw = 0; signalRun++;
   canvas.classList.toggle("on", ready && tgt.vis > 0);
   canvas.style.pointerEvents = tgt.vis > 0 ? "auto" : "none";
@@ -282,7 +345,7 @@ function frame(now) {
   const k = 1 - Math.exp(-dt * 3.2), kf = 1 - Math.exp(-dt * 6);
   cur.vis = approach(cur.vis, tgt.vis, kf);
   if (!ready || (cur.vis < 0.004 && tgt.vis === 0)) return;
-  for (const p of ["cut", "maleX", "maleVis", "femaleVis", "femaleX", "spin"]) cur[p] = approach(cur[p], tgt[p], k);
+  for (const p of ["cut", "maleX", "maleY", "maleZ", "maleYaw", "maleVis", "femaleVis", "femaleX", "humanVis", "humanX", "spin"]) cur[p] = approach(cur[p], tgt[p], k);
   for (const p of ["a", "yaw", "r", "ox", "oy"]) cur.cam[p] = approach(cur.cam[p], tgt.cam[p], k);
   cur.cam.at = tgt.cam.at;
   for (const key in shell) {
@@ -297,7 +360,10 @@ function frame(now) {
     c.front = approach(c.front, t.front, kf); c.alpha = approach(c.alpha, t.alpha, k);
     u.shown.value = c.shown; u.front.value = c.front; u.alpha.value = c.alpha * cur.maleVis;
   }
-  male.visible = cur.maleVis > 0.01; male.position.x = cur.maleX;
+  male.visible = cur.maleVis > 0.01; male.position.set(cur.maleX, cur.maleY, cur.maleZ); male.rotation.y = cur.maleYaw;
+  human.visible = cur.humanVis > 0.01; human.position.x = cur.humanX;
+  humanSpin.rotation.y = 0.65 + Math.sin(now / 1600) * 0.22;
+  for (const m of humanMats) m.uniforms.opacity.value = cur.humanVis;
   cordGroup.position.copy(cutDir).multiplyScalar(cur.cut * 150);
   female.visible = cur.femaleVis > 0.01 && !!femaleMat; female.position.x = cur.femaleX;
   if (femaleMat) femaleMat.uniforms.opacity.value = 0.8 * cur.femaleVis;
