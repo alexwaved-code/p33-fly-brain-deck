@@ -141,13 +141,18 @@ function replay() {
 // --- slide 2: a fly that will not be caught ---
 const bug = $("#bug");
 const B = { x: 1180, y: 250, vx: 0, vy: 0, tx: 1180, ty: 250, a: 0, wait: 0, on: false, mx: -999, my: -999 };
-function bugTarget() { B.tx = 140 + Math.random() * 1320; B.ty = 120 + Math.random() * 640; B.wait = 0.8 + Math.random() * 1.6; }
+const BUG = { x0: 110, x1: 1490, y0: 120, y1: 780 };
+function bugIn(x, y) { return { x: Math.max(BUG.x0, Math.min(BUG.x1, x)), y: Math.max(BUG.y0, Math.min(BUG.y1, y)) }; }
+function bugTarget() {
+  const p = bugIn(BUG.x0 + Math.random() * (BUG.x1 - BUG.x0), BUG.y0 + Math.random() * (BUG.y1 - BUG.y0));
+  B.tx = p.x; B.ty = p.y; B.wait = 0.8 + Math.random() * 1.6;
+}
 function bugDodge() {
   const dx = B.x - B.mx, dy = B.y - B.my, d = Math.hypot(dx, dy) || 1;
-  B.tx = Math.max(100, Math.min(1500, B.x + (dx / d) * 520 + (Math.random() - 0.5) * 300));
-  B.ty = Math.max(100, Math.min(800, B.y + (dy / d) * 380 + (Math.random() - 0.5) * 300));
-  if (Math.hypot(B.tx - B.mx, B.ty - B.my) < 300) { B.tx = 1600 - B.mx; B.ty = 900 - B.my; }
-  B.wait = 1.2;
+  let tx = B.x + (dx / d) * 380 + (Math.random() - 0.5) * 180;
+  let ty = B.y + (dy / d) * 240 + (Math.random() - 0.5) * 180;
+  if (Math.hypot(tx - B.mx, ty - B.my) < 240) { tx = 800 + (B.x < 800 ? 220 : -220); ty = 450 + (B.y < 450 ? 140 : -140); }
+  const p = bugIn(tx, ty); B.tx = p.x; B.ty = p.y; B.wait = 1.2;
 }
 deck.parentElement.addEventListener("pointermove", (e) => {
   B.mx = (e.clientX - innerWidth / 2) / K + 800; B.my = (e.clientY - innerHeight / 2) / K + 450;
@@ -162,8 +167,12 @@ function bugFrame(now) {
   if (d < 12) { B.wait -= dt; if (B.wait <= 0) bugTarget(); B.vx *= 0.8; B.vy *= 0.8; }
   else { const sp = Math.min(1500, 260 + d * 5); B.vx += ((dx / d) * sp - B.vx) * Math.min(1, dt * 9); B.vy += ((dy / d) * sp - B.vy) * Math.min(1, dt * 9); }
   B.x += B.vx * dt; B.y += B.vy * dt;
+  if (B.x < BUG.x0) { B.x = BUG.x0; B.vx = Math.abs(B.vx); B.tx = Math.max(B.tx, BUG.x0 + 80); }
+  if (B.x > BUG.x1) { B.x = BUG.x1; B.vx = -Math.abs(B.vx); B.tx = Math.min(B.tx, BUG.x1 - 80); }
+  if (B.y < BUG.y0) { B.y = BUG.y0; B.vy = Math.abs(B.vy); B.ty = Math.max(B.ty, BUG.y0 + 60); }
+  if (B.y > BUG.y1) { B.y = BUG.y1; B.vy = -Math.abs(B.vy); B.ty = Math.min(B.ty, BUG.y1 - 60); }
   if (Math.hypot(B.vx, B.vy) > 30) B.a = Math.atan2(B.vy, B.vx);
-  bug.style.transform = `translate(${B.x - 42}px, ${B.y - 34 + Math.sin(now / 90) * 3}px) rotate(${B.a}rad)`;
+  bug.style.transform = `translate(${B.x - 42}px, ${B.y - 34 + Math.sin(now / 90) * 3}px) rotate(${B.a}rad) scale(1.5)`;
   requestAnimationFrame(bugFrame);
 }
 

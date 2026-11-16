@@ -70,6 +70,7 @@ a { color: inherit; }
 .cite:hover { border-color: var(--ink); color: var(--ink); }
 .stage-cap { position: absolute; bottom: 64px; font-size: 22px; line-height: 1.5; color: var(--soft); text-align: center; width: 640px; }
 .stage-cap.right { right: 110px; } .stage-cap b { color: var(--amber); }
+.slide[data-n="1"] .stage-cap.right { right: 48px; width: 640px; font-size: 20px; text-align: right; }
 
 .card, .chip-xl, .fact, .pill, .mini, .stat, .err, .stage4 { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 1px 0 rgba(0,0,0,.02), 0 14px 40px -18px rgba(40,30,10,.18); }
 .pill { font-size: 36px; padding: 16px 34px; border-radius: 999px; display: inline-block; }
@@ -85,8 +86,11 @@ a { color: inherit; }
 .ccby { font: 500 84px var(--serif) !important; color: var(--amber); }
 
 /* 1 */
-.team { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; margin-top: 54px; font-size: 27px; }
-.team span { color: var(--faint); margin-left: 8px; font-variant-numeric: tabular-nums; }
+.team { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; margin-top: 36px; }
+.team li { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; align-items: baseline; }
+.team b { grid-column: 1 / -1; font: 700 22px var(--sans); letter-spacing: .04em; color: var(--amber); }
+.team .who { font-size: 24px; color: var(--ink); }
+.team span { color: var(--faint); font-size: 18px; font-variant-numeric: tabular-nums; }
 .slide[data-n="1"] .tiny { margin-top: 26px; }
 
 /* 2 */
@@ -309,7 +313,6 @@ a { color: inherit; }
 .parts:not(.wide3) { top: 200px; gap: 12px; } .parts:not(.wide3) li { padding: 10px 22px; } .parts:not(.wide3) h3 { font-size: 34px; } .parts:not(.wide3) p { font-size: 26px; }
 .slide[data-n="11"] .say { background: rgba(255,255,255,.88); padding: 34px 40px; border-radius: 26px; box-shadow: 0 24px 60px -30px rgba(40,30,10,.3); font-size: 68px; }
 .path { font-size: 31px; white-space: nowrap; }
-#bug { scale: 1.5; }
 .punch.small { font-size: 43px; margin-top: 30px; padding: 24px 40px; } .adv { margin-top: 30px; gap: 18px; }
 .mini b { font-size: 30px; white-space: nowrap; } .slide[data-n="18"] .line { font-size: 29px; }
 .slide[data-n="25"] { padding-top: 84px; } .slide[data-n="25"] .title { font-size: 52px; }
